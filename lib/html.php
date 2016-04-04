@@ -22,17 +22,56 @@
 
 declare(strict_types=1);
 
-namespace phun;
-
-// Library inclusion
-require_once 'lib/utils.php';
-require_once 'lib/nodes.php';
-require_once 'lib/html.php';
-
-// Temp examples
 
 
-echo dom\head()
+/**
+ * Provide HTML's node representation
+ * @author Van de Woestyne Xavier <xaviervdw@gmail.com>
+ */
+namespace phun\dom;
 
+/**
+ * Create a PCData node
+ * @param string data; the raw text
+ * @return a PCDATA node
+ */
+function pcdata(string $data) {
+    return new PCDATA($data);
+}
+
+/**
+ * Create a Leaf (hr, br) node
+ * @param string the name of the tag ('hr', 'br') for example
+ * @return a Leaf Node
+ */
+function leaf(string $name) {
+    return new Leaf($name);
+}
+
+/**
+ * Create an Inline  (span for example) node
+ * @param string the name of the tag, 'span' for example
+ * @return an Inlined Node
+ */
+function inline(string $name) {
+    return new InlineNode($name);
+}
+
+/**
+ * Create a Block  (div for example) node
+ * @param string the name of the tag, 'div' for example
+ * @return a Block Node
+ */
+function block(string $name) {
+    return new block($name);
+}
+
+/**
+ * Create an Header Element
+ * @return Header object
+ */
+function head() {
+    return new Header();
+}
 
 ?>
