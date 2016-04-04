@@ -32,7 +32,7 @@ require_once 'lib/html.php';
 // Temp examples
 
 
-echo dom\head()
+echo dom\head()->append(dom\title("Helo World"));
 
 
 ?>

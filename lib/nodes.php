@@ -244,8 +244,9 @@ class PCDATA implements Inline {
 }
 
 // Meta-decoration of balise
-class MetadataLeaf extends Leaf implements MetaHeader {}
-class MetadataNode extends CompositeNode implements MetaHeader {}
+class MetadataLeaf extends Leaf implements MetaHeader, Inline          {}
+class MetadataNode extends CompositeNode implements MetaHeader, Inline {}
+class Template     extends BlockNode implements MetaHeader             {}
 
 // Header block
 class Header extends CompositeNode {
@@ -270,6 +271,29 @@ class Header extends CompositeNode {
      * @return return the current instance of chaining
      */
     public function prepend(MetaHeader ...$nodes) {
+        $this->content = array_merge($nodes, $this->content);
+        return $this;
+    }
+}
+
+// Title Balise
+class Title extends CompositeNode implements MetaHeader {
+    /**
+     * Append nodes to the current element
+     * @param ...PCDATA
+     * @return return the current instance of chaining
+     */
+    public function append(PCDATA...$nodes) {
+        $this->content = array_merge($this->content, $nodes);
+        return $this;
+    }
+
+    /**
+     * Prepend nodes to the current element
+     * @param ...Blocks Block, Inline or Closde
+     * @return return the current instance of chaining
+     */
+    public function prepend(PCDATA ...$nodes) {
         $this->content = array_merge($nodes, $this->content);
         return $this;
     }

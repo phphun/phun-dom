@@ -63,7 +63,7 @@ function inline(string $name) {
  * @return a Block Node
  */
 function block(string $name) {
-    return new block($name);
+    return new BlockNode($name);
 }
 
 /**
@@ -73,5 +73,71 @@ function block(string $name) {
 function head() {
     return new Header();
 }
+
+/**
+ * Create a base Element
+ * @return MetadataLeaf object
+ */
+function base() {
+    return new MetadataLeaf('base');
+}
+
+/**
+ * Create a link Element
+ * @return MetadataLeaf object
+ */
+function link() {
+    return new MetadataLeaf('link');
+}
+
+/**
+ * Create a meta Element
+ * @return MetadataLeaf object
+ */
+function meta() {
+    return new MetadataLeaf('meta');
+}
+
+/**
+ * Create a noscript Element
+ * @return MetadataNode object
+ */
+function noscript() {
+    return new MetadataNode('noscript');
+}
+
+/**
+ * Create a script Element
+ * @return MetadataNode object
+ */
+function script() {
+    return new MetadataNode('script');
+}
+
+/**
+ * Create a style Element
+ * @return MetadataNode object
+ */
+function style() {
+    return new MetadataNode('style');
+}
+
+/**
+ * Create a template Element
+ * @return Template object
+ */
+function template() {
+    return new Template('template');
+}
+
+/**
+ * Create a title Element
+ * @return Title object
+ */
+function title(string $value) {
+    return (new Title('title'))
+        ->append(pcdata($value));
+}
+
 
 ?>
