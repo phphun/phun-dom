@@ -22,12 +22,14 @@
 
 declare(strict_types=1);
 
+namespace phun;
+
 // Library inclusion
 require_once 'lib/utils.php';
 require_once 'lib/nodes.php';
 
 
 // Temp examples
-use phun\utils as U;
-echo U\data_id("div");
+
+var_dump(new dom\Node('div'));
 ?>

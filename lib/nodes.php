@@ -35,5 +35,34 @@ namespace phun\dom;
  */
 abstract class Node {
 
+    protected $name;
+    protected $uniq_id;
+    protected $content;
+    protected $attributes;
+    protected $data_attributes;
+
+    public function __construct(string $name) {
+        $this->name = $name;
+        $this->uniq_id = \phun\utils\data_id($name);
+        $this->content = [];
+        $this->attributes = [];
+        $this->data_attributes = [];
+    }
+
+
+    /**
+     * Add an attribute to the node
+     * @param string key the name of the attribute
+     * @param value the value of the attribute
+     * @return return the current instance, for chaining operation
+     */
+    public function addAttribute(string $key, $value) {
+        $this->attributes[$key] = $value;
+        return $this;
+    }
+
+
+
+
 }
 
