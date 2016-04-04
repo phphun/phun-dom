@@ -35,18 +35,20 @@ namespace phun\dom;
  */
 abstract class Node {
 
+    // Parameters
     protected $name;
     protected $uniq_id;
-    protected $content;
     protected $attributes;
-    protected $data_attributes;
 
+
+    /**
+     * Build a Generic Tag
+     * @param string name the name of the tag. For example 'div'
+     */
     public function __construct(string $name) {
         $this->name = $name;
         $this->uniq_id = \phun\utils\data_id($name);
-        $this->content = [];
         $this->attributes = [];
-        $this->data_attributes = [];
     }
 
 
@@ -56,7 +58,7 @@ abstract class Node {
      * @param value the value of the attribute
      * @return return the current instance, for chaining operation
      */
-    public function addAttribute(string $key, $value) {
+    public function addAttribute(string $key, $value) : Node  {
         $this->attributes[$key] = $value;
         return $this;
     }
@@ -70,7 +72,7 @@ abstract class Node {
      * @param string strategy (the separator of data)
      * @return return the current instance, for chaining operation
      */
-    public function mergeAttribute(string $key, $value, string $strategy = ' ') {
+    public function mergeAttribute(string $key, $value, string $strategy = ' ') : Node {
         if (array_key_exists($key, $this->attributes)) {
             $this->attributes[$key] .= $strategy . $value;
         } else {
@@ -79,6 +81,27 @@ abstract class Node {
         return $this;
     }
 
+
+    /**
+     * Coers attributes to string
+     * @return an internal representation of attributes
+     */
+    protected function attrToString() : string {
+        $result = '';
+        foreach($this->attributes as $key => $value) {
+            $result .= ' ' . $key . '="' . $value . '"' ;
+        }
+        return $result;
+    }
+
+
+    /**
+     * Coers the base of a tag to String
+     * @return an internal representation of an unclosed tag
+     */
+    protected function baseTagToString() : string {
+        return '<' . $this->name . $this->attrToString() ;
+    }
 
 }
 
