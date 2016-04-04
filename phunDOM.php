@@ -32,7 +32,8 @@ require_once 'lib/nodes.php';
 // Temp examples
 
 $hr = new dom\Leaf('hr');
-$hr->where('class', 'test');
-$hr->where('class', 'test2');
-echo $hr;
+$span = new dom\InlineNode('span');
+$div = new dom\BlockNode('div');
+$div->append($span, $hr);
+echo $div;
 ?>

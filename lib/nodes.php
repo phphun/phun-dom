@@ -150,7 +150,7 @@ abstract class CompositeNode extends Node {
      */
     public function __construct(string $name) {
         parent::__construct($name);
-        $this->protected = [];
+        $this->content = [];
     }
 
     /**
@@ -175,7 +175,7 @@ class InlineNode extends CompositeNode implements Inline, Closed, Block {
 
     /**
      * Append nodes to the current element
-     * @param ...InlineNode
+     * @param ...Inline Nodes
      * @return return the current instance of chaining
      */
     public function append(Inline...$nodes) {
@@ -185,7 +185,7 @@ class InlineNode extends CompositeNode implements Inline, Closed, Block {
 
     /**
      * Prepend nodes to the current element
-     * @param ...InlineNode
+     * @param ...Inline nodes
      * @return return the current instance of chaining
      */
     public function prepend(Inline ...$nodes) {
@@ -199,7 +199,7 @@ class InlineNode extends CompositeNode implements Inline, Closed, Block {
 class BlockNode extends CompositeNode implements Block {
     /**
      * Append nodes to the current element
-     * @param ...InlineNode
+     * @param ...Blocks Block, Inline or Closed
      * @return return the current instance of chaining
      */
     public function append(Block...$nodes) {
@@ -209,7 +209,7 @@ class BlockNode extends CompositeNode implements Block {
 
     /**
      * Prepend nodes to the current element
-     * @param ...InlineNode
+     * @param ...Blocks Block, Inline or Closde
      * @return return the current instance of chaining
      */
     public function prepend(Block ...$nodes) {
@@ -218,5 +218,68 @@ class BlockNode extends CompositeNode implements Block {
     }
 }
 
+// PCData (raw text)
+class PCDATA implements Inline {
+
+    // Attributes
+    protected $raw;
+
+    /**
+     * Build a PCDATA
+     * @param string the value of PCData
+     */
+    public function __construct(string $data) {
+        $this->raw = $data;
+    }
+
+    /**
+     * Magic string coersion
+     * @return a String representation of a PCDATA
+     */
+    public function __toString() : string {
+        return $this->raw;
+    }
+
+}
+
+// Conveinent object builder
+// Like a factory... but without OO Bullshit :v :v
+
+
+/**
+ * Create a PCData node
+ * @param string data; the raw text
+ * @return a PCDATA node
+ */
+function pcdata(string $data) {
+    return new PCDATA($data);
+}
+
+/**
+ * Create a Leaf (hr, br) node
+ * @param string the name of the tag ('hr', 'br') for example
+ * @return a Leaf Node
+ */
+function leaf(string $name) {
+    return new Leaf($name);
+}
+
+/**
+ * Create an Inline  (span for example) node
+ * @param string the name of the tag, 'span' for example
+ * @return an Inlined Node
+ */
+function inline(string $name) {
+    return new InlineNode($name);
+}
+
+/**
+ * Create a Block  (div for example) node
+ * @param string the name of the tag, 'div' for example
+ * @return a Block Node
+ */
+function block(string $name) {
+    return new block($name);
+}
 
 ?>
