@@ -139,7 +139,7 @@ class Leaf extends Node implements Closed, Block{
 }
 
 // Wrapper for TypeSafe dom representation
-class CompositeNode extends Node {
+abstract class CompositeNode extends Node {
 
     // Attributes
     protected $content;
@@ -170,7 +170,53 @@ class CompositeNode extends Node {
 }
 
 // Typed Inline
+class InlineNode extends CompositeNode implements Inline, Closed, Block {
 
+
+    /**
+     * Append nodes to the current element
+     * @param ...InlineNode
+     * @return return the current instance of chaining
+     */
+    public function append(Inline...$nodes) {
+        $this->content = array_merge($this->content, $nodes);
+        return $this;
+    }
+
+    /**
+     * Prepend nodes to the current element
+     * @param ...InlineNode
+     * @return return the current instance of chaining
+     */
+    public function prepend(Inline ...$nodes) {
+        $this->content = array_merge($nodes, $this->content);
+        return $this;
+    }
+
+}
+
+// Typed Block
+class BlockNode extends CompositeNode implements Block {
+    /**
+     * Append nodes to the current element
+     * @param ...InlineNode
+     * @return return the current instance of chaining
+     */
+    public function append(Block...$nodes) {
+        $this->content = array_merge($this->content, $nodes);
+        return $this;
+    }
+
+    /**
+     * Prepend nodes to the current element
+     * @param ...InlineNode
+     * @return return the current instance of chaining
+     */
+    public function prepend(Block ...$nodes) {
+        $this->content = array_merge($nodes, $this->content);
+        return $this;
+    }
+}
 
 
 ?>
