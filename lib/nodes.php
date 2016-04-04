@@ -51,7 +51,7 @@ abstract class Node {
 
 
     /**
-     * Add an attribute to the node
+     * Add an attribute to the node. Erase old attribute if exists
      * @param string key the name of the attribute
      * @param value the value of the attribute
      * @return return the current instance, for chaining operation
@@ -62,6 +62,22 @@ abstract class Node {
     }
 
 
+    /**
+     * Same of addAttribute, but merge the existing attributes
+     * @see addAttribute
+     * @param string key the name of the attribute
+     * @param value the value of the attribute
+     * @param string strategy (the separator of data)
+     * @return return the current instance, for chaining operation
+     */
+    public function mergeAttribute(string $key, $value, string $strategy = ' ') {
+        if (array_key_exists($key, $this->attributes)) {
+            $this->attributes[$key] .= $strategy . $value;
+        } else {
+            $this->attributes[$key] = $value;
+        }
+        return $this;
+    }
 
 
 }
