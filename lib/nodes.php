@@ -29,6 +29,11 @@ declare(strict_types=1);
 namespace phun\dom;
 
 
+// Interface for balise distinction
+interface Block  {}
+interface Inline {}
+interface Closed {}
+
 
 /**
  * Abstract HTML's node representation
@@ -113,7 +118,7 @@ abstract class Node {
 }
 
 // An atomic blog representation
-class Leaf extends Node {
+class Leaf extends Node implements Closed, Block{
 
     /**
      * Build an atomic Tag
@@ -148,11 +153,24 @@ class CompositeNode extends Node {
         $this->protected = [];
     }
 
+    /**
+     * Magic string coersion
+     * @return a String representation of a Composite Node
+     */
+    public function __toString() : string {
+        $result = $this->baseTagToString() . '>';
+        foreach($this->content as $elt) {
+            $result .= $elt;
+        }
+        $result .= '</'.$this->name.'>';
+        return $result;
+    }
+
 
 }
 
-class InlineNode extends CompositeNode {}
-class BlockNode  extends CompositeNode {}
+// Typed Inline
+
 
 
 ?>
