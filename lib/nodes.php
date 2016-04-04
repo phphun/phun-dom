@@ -58,7 +58,7 @@ abstract class Node {
      * @param value the value of the attribute
      * @return return the current instance, for chaining operation
      */
-    public function addAttribute(string $key, $value) : Node  {
+    public function addAttribute(string $key, $value)  {
         $this->attributes[$key] = $value;
         return $this;
     }
@@ -72,7 +72,7 @@ abstract class Node {
      * @param string strategy (the separator of data)
      * @return return the current instance, for chaining operation
      */
-    public function mergeAttribute(string $key, $value, string $strategy = ' ') : Node {
+    public function mergeAttribute(string $key, $value, string $strategy = ' ') {
         if (array_key_exists($key, $this->attributes)) {
             $this->attributes[$key] .= $strategy . $value;
         } else {
@@ -81,13 +81,20 @@ abstract class Node {
         return $this;
     }
 
+    /**
+     * @see mergeAttribute
+     */
+    public function where(string $key, $value, string $strategy = ' ') {
+        return $this->mergeAttribute($key, $value, $strategy);
+    }
+
 
     /**
      * Coers attributes to string
      * @return an internal representation of attributes
      */
     protected function attrToString() : string {
-        $result = '';
+        $result = ' data-phun-id="' . $this->uniq_id . '"';
         foreach($this->attributes as $key => $value) {
             $result .= ' ' . $key . '="' . $value . '"' ;
         }
@@ -105,3 +112,47 @@ abstract class Node {
 
 }
 
+// An atomic blog representation
+class Leaf extends Node {
+
+    /**
+     * Build an atomic Tag
+     * @param string name the name of the tag. For example 'hr'
+     */
+    public function __construct(string $name) {
+        parent::__construct($name);
+    }
+
+    /**
+     * Magic string coersion
+     * @return a String representation of a Leaf
+     */
+    public function __toString() : string {
+        return $this->baseTagToString() . '/>';
+    }
+
+}
+
+// Wrapper for TypeSafe dom representation
+class CompositeNode extends Node {
+
+    // Attributes
+    protected $content;
+
+    /**
+     * Build a Generic Composite Tag
+     * @param string name the name of the tag. For example 'div' or 'span'
+     */
+    public function __construct(string $name) {
+        parent::__construct($name);
+        $this->protected = [];
+    }
+
+
+}
+
+class InlineNode extends CompositeNode {}
+class BlockNode  extends CompositeNode {}
+
+
+?>

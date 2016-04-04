@@ -31,5 +31,8 @@ require_once 'lib/nodes.php';
 
 // Temp examples
 
-var_dump(new dom\Node('div'));
+$hr = new dom\Leaf('hr');
+$hr->where('class', 'test');
+$hr->where('class', 'test2');
+echo $hr;
 ?>
