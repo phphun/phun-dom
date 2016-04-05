@@ -132,12 +132,33 @@ function template() {
 
 /**
  * Create a title Element
- * @return Title object
+ * @return Plain object
  */
 function title(string $value) {
-    return (new Title('title'))
+    return (new Plain('title'))
         ->append(pcdata($value));
 }
+
+/**
+ * Create an A element
+ * @return InlineNode element
+ */
+function a() {
+    return new InlineNode();
+}
+
+/**
+ * Create an abbreviation element
+ * @param string the content (abbriged word)
+ * @param string the sense of the abbrev
+ * @return Plain object
+ */
+function abbr(string $content, string $abbrv) {
+    return (new Plain('abbr'))
+        ->where('title', $abbrv)
+        ->append(pcdata($content));
+}
+
 
 
 ?>

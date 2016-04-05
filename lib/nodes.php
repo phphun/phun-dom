@@ -276,8 +276,8 @@ class Header extends CompositeNode {
     }
 }
 
-// Title Balise
-class Title extends CompositeNode implements MetaHeader {
+// Plain Balise
+class Plain extends CompositeNode implements MetaHeader, Inline {
     /**
      * Append nodes to the current element
      * @param ...PCDATA
