@@ -276,6 +276,34 @@ class Header extends CompositeNode {
     }
 }
 
+// Body Block
+class Body extends CompositeNode {
+
+    public function __construct() {
+        parent::__construct('body');
+    }
+
+    /**
+     * Append nodes to the current element
+     * @param ...Node
+     * @return return the current instance of chaining
+     */
+    public function append(Node...$nodes) {
+        $this->content = array_merge($this->content, $nodes);
+        return $this;
+    }
+
+    /**
+     * Prepend nodes to the current element
+     * @param ...Blocks Block, Inline or Closde
+     * @return return the current instance of chaining
+     */
+    public function prepend(Node ...$nodes) {
+        $this->content = array_merge($nodes, $this->content);
+        return $this;
+    }
+}
+
 // Plain Balise
 class Plain extends CompositeNode implements MetaHeader, Inline {
     /**
@@ -297,6 +325,34 @@ class Plain extends CompositeNode implements MetaHeader, Inline {
         $this->content = array_merge($nodes, $this->content);
         return $this;
     }
+}
+
+/**
+ * Represent a complete HTML Document
+ */
+class Document extends CompositeNode {
+
+    // Attributes
+
+    protected $head;
+    protected $body;
+    protected $title;
+
+    /**
+     * Create a Document (HTML) with easy access to head and body. Title, lang and charset are
+     * pre-saved and doesn't be specified.
+     * @param string title the title of the page
+     * @param string charset the charset of the page
+     * @param string lang the language of the page
+     * @return an instance of Document
+     */
+    public function __construct(string $title, string $charset = 'utf-8', string $lang = 'en') {
+        parent::__construct('html');
+        $this->addAttribute('lang', $lang);
+        $this->head = new Header();
+        $this->body = new Body();
+    }
+
 }
 
 

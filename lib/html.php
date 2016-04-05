@@ -75,6 +75,14 @@ function head() {
 }
 
 /**
+ * Create a Body Element
+ * @return Body object
+ */
+function body() {
+    return new Body();
+}
+
+/**
  * Create a base Element
  * @return MetadataLeaf object
  */
@@ -159,6 +167,11 @@ function abbr(string $content, string $abbrv) {
         ->append(pcdata($content));
 }
 
+
+
+/**
+ * Create an HTML Document
+ */
 
 
 ?>
