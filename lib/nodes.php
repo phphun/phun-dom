@@ -327,6 +327,43 @@ class Plain extends CompositeNode implements MetaHeader, Inline {
     }
 }
 
+
+/**
+ * Create a PCData node
+ * @param string data; the raw text
+ * @return a PCDATA node
+ */
+function pcdata(string $data) {
+    return new PCDATA($data);
+}
+
+/**
+ * Create a Leaf (hr, br) node
+ * @param string the name of the tag ('hr', 'br') for example
+ * @return a Leaf Node
+ */
+function leaf(string $name) {
+    return new Leaf($name);
+}
+
+/**
+ * Create an Inline  (span for example) node
+ * @param string the name of the tag, 'span' for example
+ * @return an Inlined Node
+ */
+function inline(string $name) {
+    return new InlineNode($name);
+}
+
+/**
+ * Create a Block  (div for example) node
+ * @param string the name of the tag, 'div' for example
+ * @return a Block Node
+ */
+function block(string $name) {
+    return new BlockNode($name);
+}
+
 /**
  * Represent a complete HTML Document
  */
@@ -349,8 +386,35 @@ class Document extends CompositeNode {
     public function __construct(string $title, string $charset = 'utf-8', string $lang = 'en') {
         parent::__construct('html');
         $this->addAttribute('lang', $lang);
-        $this->head = new Header();
+        $meta = (new MetadataLeaf('meta'))->where('charset', $charset);
+        $title = (new Plain('title'))->append(pcdata($title));
+        $this->head = (new Header())->prepend($meta)->append($title);
         $this->body = new Body();
+    }
+
+    /**
+     * Returns the header reférence
+     * @return Header header element
+     */
+    public function head() {
+        return $this->head;
+    }
+
+    /**
+     * Returns the body reférence
+     * @return Body body element
+     */
+    public function body() {
+        return $this->body;
+    }
+
+    /**
+     * Magic string coersion
+     * @return a String representation of an HTML Document
+     */
+    public function __toString() : string {
+        $this->content = [$this->head, $this->body];
+        return '<!doctype html>' . (parent::__toString());
     }
 
 }

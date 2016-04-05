@@ -31,8 +31,12 @@ require_once 'lib/html.php';
 
 // Temp examples
 
+$html = dom\html('Hello World');
+$head = $html->head();
+$body = $html->body();
 
-echo dom\head()->append(dom\title("Hello World"));
+echo $html;
+
 
 
 ?>

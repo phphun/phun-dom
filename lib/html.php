@@ -30,40 +30,17 @@ declare(strict_types=1);
  */
 namespace phun\dom;
 
-/**
- * Create a PCData node
- * @param string data; the raw text
- * @return a PCDATA node
- */
-function pcdata(string $data) {
-    return new PCDATA($data);
-}
 
 /**
- * Create a Leaf (hr, br) node
- * @param string the name of the tag ('hr', 'br') for example
- * @return a Leaf Node
+ * Create a Document (HTML) with easy access to head and body. Title, lang and charset are
+ * pre-saved and doesn't be specified.
+ * @param string title the title of the page
+ * @param string charset the charset of the page
+ * @param string lang the language of the page
+ * @return an instance of Document
  */
-function leaf(string $name) {
-    return new Leaf($name);
-}
-
-/**
- * Create an Inline  (span for example) node
- * @param string the name of the tag, 'span' for example
- * @return an Inlined Node
- */
-function inline(string $name) {
-    return new InlineNode($name);
-}
-
-/**
- * Create a Block  (div for example) node
- * @param string the name of the tag, 'div' for example
- * @return a Block Node
- */
-function block(string $name) {
-    return new BlockNode($name);
+function html(string $title, string $charset = 'utf-8', string $lang = 'utf-8') {
+    return new Document($title, $charset, $lang);
 }
 
 /**
@@ -81,6 +58,7 @@ function head() {
 function body() {
     return new Body();
 }
+
 
 /**
  * Create a base Element
