@@ -144,12 +144,3 @@ function abbr(string $content, string $abbrv) {
         ->where('title', $abbrv)
         ->append(pcdata($content));
 }
-
-
-
-/**
- * Create an HTML Document
- */
-
-
-?>

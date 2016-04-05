@@ -36,7 +36,3 @@ $head = $html->head();
 $body = $html->body();
 
 echo $html;
-
-
-
-?>

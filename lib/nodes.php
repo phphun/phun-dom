@@ -418,6 +418,3 @@ class Document extends CompositeNode {
     }
 
 }
-
-
-?>

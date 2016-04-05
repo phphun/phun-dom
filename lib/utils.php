@@ -41,5 +41,3 @@ function data_id(string $prefix = '', string $suffix = null) : string {
     $suffix = ($suffix === '') ? $suffix : '-' . $suffix;
     return uniqid($prefix) . $suffix;
 }
-
-?>
