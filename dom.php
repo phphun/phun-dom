@@ -38,4 +38,8 @@ $body = $html->body();
 
 $ln = dom\a()->where('href', '#lock')->append(dom\pcdata("hello"));
 $body->append($ln);
+$body->append(dom\br());
+
 echo $html;
+
+?>

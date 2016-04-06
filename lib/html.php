@@ -30,6 +30,25 @@ declare(strict_types=1);
  */
 namespace phun\dom;
 
+/**
+ * Direct append on element
+ * @param Node base the receiver of the nodes
+ * @param Nodes nodes list
+ * @return the receiver
+ */
+function append($base, ...$nodes) {
+    return $base->append(...$nodes);
+}
+
+/**
+ * Direct prepend on element
+ * @param Node base the receiver of the nodes
+ * @param Nodes nodes list
+ * @return the receiver
+ */
+function preped($base, ...$nodes) {
+    return $base->prepend(...$nodes);
+}
 
 /**
  * Create a Document (HTML) with easy access to head and body. Title, lang and charset are
@@ -234,5 +253,81 @@ function strong() {
 function span() {
     return inline('span');
 }
+
+/**
+ * Create a bdi Block
+ * @return InlineNode object
+ */
+function bdi() {
+    return inline('bdi');
+}
+
+/**
+ * Create a bdo Block
+ * @return InlineNode object
+ */
+function bdo() {
+    return inline('bdo');
+}
+
+/**
+ * Create a blockquote Block
+ * @return BlockNode object
+ */
+function blockquote() {
+    return block('blockquote');
+}
+
+/**
+ * Create a Br Block
+ * @return Leaf object
+ */
+function br() {
+    return leaf('br');
+}
+
+/**
+ * Create a button Block
+ * @return InlineNode object
+ */
+function button() {
+    return inline('button');
+}
+
+/**
+ * Create a Canvas Block
+ * @return InlineNode object
+ */
+function canvas() {
+    return inline('canvas');
+}
+
+/**
+ * Create a Cite Block
+ * @return InlineNode object
+ */
+function cite() {
+    return inline('cite');
+}
+
+/**
+ * Create a Code Block
+ * @return InlineNode object
+ */
+function code() {
+    return inline('code');
+}
+
+/**
+ * Create a Data Element
+ * @return Leaf object
+ */
+function data(string $value) {
+    return leaf('data')
+        ->where('value', $value);
+}
+
+
+
 
 
