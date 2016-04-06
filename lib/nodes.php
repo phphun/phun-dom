@@ -34,6 +34,7 @@ interface Block      {}
 interface Inline     {}
 interface Closed     {}
 interface MetaHeader {}
+interface InMap      {}
 
 
 /**
@@ -417,4 +418,33 @@ class Document extends CompositeNode {
         return '<!doctype html>' . (parent::__toString());
     }
 
+}
+
+// TypeFix class
+class MapElement extends InlineNode implements InMap {}
+
+class Map extends CompositeNode implements Block {
+    public function __construct() {
+        parent::__construct('map');
+    }
+
+    /**
+     * Append nodes to the current element
+     * @param ...MetaHeader
+     * @return return the current instance of chaining
+     */
+    public function append(InMap...$nodes) {
+        $this->content = array_merge($this->content, $nodes);
+        return $this;
+    }
+
+    /**
+     * Prepend nodes to the current element
+     * @param ...Blocks Block, Inline or Closde
+     * @return return the current instance of chaining
+     */
+    public function prepend(InMap ...$nodes) {
+        $this->content = array_merge($nodes, $this->content);
+        return $this;
+    }
 }

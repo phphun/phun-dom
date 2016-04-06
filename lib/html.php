@@ -127,11 +127,20 @@ function title(string $value) {
 
 /**
  * Create an A element
- * @return InlineNode element
+ * @return MapElement element
  */
 function a() {
-    return new InlineNode();
+    return new MapElement('a');
 }
+
+/**
+ * Create an Area element
+ * @return MapElement element
+ */
+function area() {
+    return new MapElement('area');
+}
+
 
 /**
  * Create an abbreviation element
@@ -144,3 +153,20 @@ function abbr(string $content, string $abbrv) {
         ->where('title', $abbrv)
         ->append(pcdata($content));
 }
+
+/**
+ * Create an address Block
+ * @return BlockNode object
+ */
+function address() {
+    return block('address');
+}
+
+/**
+ * Create a Map Block
+ * @return Map object
+ */
+function map() {
+    return new Map();
+}
+

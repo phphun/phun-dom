@@ -32,7 +32,10 @@ require_once 'lib/html.php';
 // Temp examples
 
 $html = dom\html('Hello World');
+
 $head = $html->head();
 $body = $html->body();
 
+$ln = dom\a()->where('href', '#lock')->append(dom\pcdata("hello"));
+$body->append($ln);
 echo $html;
