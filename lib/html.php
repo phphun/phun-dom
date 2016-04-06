@@ -170,3 +170,69 @@ function map() {
     return new Map();
 }
 
+/**
+ * Create an Article Block
+ * @return BlockNode object
+ */
+function article() {
+    return block('article');
+}
+
+/**
+ * Create an Aside Block
+ * @return BlockNode object
+ */
+function aside() {
+    return block('aside');
+}
+
+/**
+ * Create a div Block
+ * @return BlockNode object
+ */
+function div() {
+    return block('div');
+}
+
+/**
+ * Create an Audio Block
+ * @return InlineNode object
+ */
+function audio() {
+    return inline('audio');
+}
+
+/**
+ * Create a video Block
+ * @return InlineNode object
+ */
+function video() {
+    return inline('video');
+}
+
+/**
+ * Create a bold Block
+ * @return InlineNode object
+ */
+function b() {
+    return inline('b');
+}
+
+/**
+ * Create a strong Block
+ * @return InlineNode object
+ */
+function strong() {
+    return inline('strong');
+}
+
+
+/**
+ * Create a span Block
+ * @return InlineNode object
+ */
+function span() {
+    return inline('span');
+}
+
+
