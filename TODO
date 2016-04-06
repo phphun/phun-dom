@@ -4,8 +4,10 @@ Tag implementation
     - Formlet elements
     - Table/tr/td etc.
     - Figure elements (grouping)
-    - 
-    - Embed/Object 
+    - Iframe
+    - kbd/samp
+    - Embed/Object
+    - Math balise
 
 Improvement
     - Typesafe attributes (not for now...  

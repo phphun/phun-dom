@@ -287,6 +287,14 @@ function br() {
 }
 
 /**
+ * Create a Hr Block
+ * @return Leaf object
+ */
+function hr() {
+    return leaf('hr');
+}
+
+/**
  * Create a button Block
  * @return InlineNode object
  */
@@ -352,6 +360,39 @@ function em() {
 }
 
 /**
+ * Create a img Block
+ * @return InlineNode object
+ */
+function img() {
+    return inline('img');
+}
+
+/**
+ * Create a I Block
+ * @return InlineNode object
+ */
+function i() {
+    return inline('i');
+}
+
+/**
+ * Create a Mark Block
+ * @return InlineNode object
+ */
+function mark() {
+    return inline('mark');
+}
+
+/**
+ * Create a U Block
+ * @return InlineNode object
+ */
+function u() {
+    return inline('u');
+}
+
+
+/**
  * Create a footer Block
  * @return BlockNode object
  */
@@ -365,6 +406,14 @@ function footer() {
  */
 function header() {
     return block('header');
+}
+
+/**
+ * Create a nav Block
+ * @return BlockNode object
+ */
+function nav() {
+    return block('nav');
 }
 
 /**
@@ -415,4 +464,21 @@ function h5() {
 function h6() {
     return block('h6');
 }
+
+/**
+ * Create an Ins Block
+ * @return BlockNode object
+ */
+function ins() {
+    return block('ins');
+}
+
+/**
+ * Create an Main Block
+ * @return BlockNode object
+ */
+function main() {
+    return block('main');
+}
+
 
