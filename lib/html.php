@@ -391,6 +391,14 @@ function u() {
     return inline('u');
 }
 
+/**
+ * Create a Q Block
+ * @return InlineNode object
+ */
+function q() {
+    return inline('q');
+}
+
 
 /**
  * Create a footer Block
@@ -480,5 +488,22 @@ function ins() {
 function main() {
     return block('main');
 }
+
+/**
+ * Create a P Block
+ * @return BlockNode object
+ */
+function p() {
+    return block('p');
+}
+
+/**
+ * Create a Pre Block
+ * @return BlockNode object
+ */
+function pre() {
+    return block('pre');
+}
+
 
 
