@@ -367,6 +367,52 @@ function header() {
     return block('header');
 }
 
+/**
+ * Create a h1 Block
+ * @return BlockNode object
+ */
+function h1() {
+    return block('h1');
+}
+
+/**
+ * Create a h2 Block
+ * @return BlockNode object
+ */
+function h2() {
+    return block('h2');
+}
 
 
+/**
+ * Create a h3 Block
+ * @return BlockNode object
+ */
+function h3() {
+    return block('h3');
+}
+
+/**
+ * Create a h4 Block
+ * @return BlockNode object
+ */
+function h4() {
+    return block('h4');
+}
+
+/**
+ * Create a h5 Block
+ * @return BlockNode object
+ */
+function h5() {
+    return block('h5');
+}
+
+/**
+ * Create a h6 Block
+ * @return BlockNode object
+ */
+function h6() {
+    return block('h6');
+}
 

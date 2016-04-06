@@ -43,14 +43,3 @@ $body->append(dom\br());
 //echo $html;
 
 ?>
-<fieldset>
-<legend>Display</legend>
-<div><label><input type=radio name=c value=0 checked> Black on White</label></div>
-    <div><label><input type=radio name=c value=1> White on Black</label></div>
-    <div><label><input type=checkbox name=g> Use grayscale</label></div>
-    <div><label>Enhance contrast <input type=range name=e list=contrast min=0 max=100 value=0 step=1></label></div>
-    <datalist id=contrast>
-    <option label=Normal value=0>
-    <option label=Maximum value=100>
-    </datalist>
-    </fieldset>
