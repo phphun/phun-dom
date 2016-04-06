@@ -327,6 +327,22 @@ function data(string $value) {
         ->where('value', $value);
 }
 
+/**
+ * Create a Del Block
+ * @return InlineNode object
+ */
+function del() {
+    return inline('del');
+}
+
+/**
+ * Create a Dfn Block
+ * @return InlineNode object
+ */
+function dfn() {
+    return inline('dfn');
+}
+
 
 
 

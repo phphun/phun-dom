@@ -40,6 +40,13 @@ $ln = dom\a()->where('href', '#lock')->append(dom\pcdata("hello"));
 $body->append($ln);
 $body->append(dom\br());
 
-echo $html;
+//echo $html;
 
 ?>
+<dl>
+<dt lang="en-US"> <dfn>color</dfn> </dt>
+    <dt lang="en-GB"> <dfn>colour</dfn> </dt>
+    <dd> A sensation which (in humans) derives from the ability of
+    the fine structure of the eye to distinguish three differently
+    filtered analyses of a view. </dd>
+    </dl>
