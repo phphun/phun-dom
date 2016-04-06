@@ -343,6 +343,29 @@ function dfn() {
     return inline('dfn');
 }
 
+/**
+ * Create a em Block
+ * @return InlineNode object
+ */
+function em() {
+    return inline('em');
+}
+
+/**
+ * Create a footer Block
+ * @return BlockNode object
+ */
+function footer() {
+    return block('footer');
+}
+
+/**
+ * Create a header Block
+ * @return BlockNode object
+ */
+function header() {
+    return block('header');
+}
 
 
 

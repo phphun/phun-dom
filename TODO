@@ -1,6 +1,11 @@
 Tag implementation
     - Dl, dt, dd etc.
+    - Ul/Ol/li
     - Formlet elements
+    - Table/tr/td etc.
+    - Figure elements (grouping)
+    - 
+    - Embed/Object 
 
 Improvement
     - Typesafe attributes (not for now...  
