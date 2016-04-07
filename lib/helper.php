@@ -22,27 +22,20 @@
 
 declare(strict_types=1);
 
-namespace phun;
+/**
+ * Helper for dom construction
+ * @author Van de Woestyne Xavier <xaviervdw@gmail.com>
+ */
+namespace phun\dom\helper;
 
-// Library inclusion
-require_once 'lib/utils.php';
-require_once 'lib/nodes.php';
-require_once 'lib/html.php';
-require_once 'lib/helper.php';
+use \phun\dom as D;
 
-// Temp examples
-
-$html = dom\html('Hello World');
-
-$head = $html->head();
-$body = $html->body();
-
-$img = dom\helper\img('http://www.w3.org/Icons/w3c_home');
-
-$ln = dom\a()->where('href', '#lock')->append(dom\pcdata("hello"));
-$body->append($ln);
-$body->append(dom\br(), $img);
-
-echo $html;
-
-?>
+/**
+ * Create an image (with his attributes)
+ * @param $src String the url of the resource
+ * @param $alt String the "alt" of the image
+ * @return InlineNode
+ */
+function img(string $src, string $alt = 'An image') : D\InlineNode {
+    return D\img()->where('src', $src);
+}
