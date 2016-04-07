@@ -174,6 +174,24 @@ function abbr(string $content, string $abbrv) {
 }
 
 /**
+ * Create a Var element
+ * @return Plain object
+ */
+function _var(string $content) {
+    return (new Plain('var'))
+        ->append(pcdata($content));
+}
+
+/**
+ * Create a Time element
+ * @return Plain object
+ */
+function time(string $content) {
+    return (new Plain('time'))
+        ->append(pcdata($content));
+}
+
+/**
  * Create an address Block
  * @return BlockNode object
  */
@@ -227,6 +245,22 @@ function audio() {
  */
 function video() {
     return inline('video');
+}
+
+/**
+ * Create a sup Block
+ * @return InlineNode object
+ */
+function sup() {
+    return inline('sup');
+}
+
+/**
+ * Create a sub Block
+ * @return InlineNode object
+ */
+function sub() {
+    return inline('sub');
 }
 
 /**
@@ -284,6 +318,14 @@ function blockquote() {
  */
 function br() {
     return leaf('br');
+}
+
+/**
+ * Create a Wbr Block
+ * @return Leaf object
+ */
+function wbr() {
+    return leaf('wbr');
 }
 
 /**
@@ -368,6 +410,16 @@ function img() {
 }
 
 /**
+ * Create a Small Block
+ * @return InlineNode object
+ */
+function small() {
+    return inline('small');
+}
+
+
+
+/**
  * Create a I Block
  * @return InlineNode object
  */
@@ -415,6 +467,15 @@ function footer() {
 function header() {
     return block('header');
 }
+
+/**
+ * Create a section Block
+ * @return BlockNode object
+ */
+function section() {
+    return block('section');
+}
+
 
 /**
  * Create a nav Block
@@ -504,4 +565,5 @@ function p() {
 function pre() {
     return block('pre');
 }
+
 

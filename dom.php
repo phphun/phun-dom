@@ -43,9 +43,7 @@ $body->append(dom\br());
 //echo $html;
 
 ?>
-
-    <form onsubmit="return false" oninput="o.value = a.valueAsNumber + b.valueAsNumber">
-    <input name=a type=number step=any> +
-    <input name=b type=number step=any> =
-    <output name=o for="a b"></output>
-    </form>
+<pre>...
+Heading heading = Helm.HeadingFactory(HeadingCoordinates[1], <wbr>HeadingCoordinates[2], <wbr>HeadingCoordinates[3], <wbr>HeadingCoordinates[4]);
+Course course = Helm.CourseFactory(Heading, <wbr>Maps.MapFactoryFromHeading(heading), <wbr>Speeds.GetMaximumSpeed().ConvertToWarp());
+...</pre>
