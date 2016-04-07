@@ -26,16 +26,20 @@ declare(strict_types=1);
  * Helper for dom construction
  * @author Van de Woestyne Xavier <xaviervdw@gmail.com>
  */
-namespace phun\dom\helper;
+namespace phun\HTML {
 
-use \phun\dom as D;
+    use \phun\dom as D;
 
-/**
- * Create an image (with his attributes)
- * @param $src String the url of the resource
- * @param $alt String the "alt" of the image
- * @return InlineNode
- */
-function img(string $src, string $alt = 'An image') : D\InlineNode {
-    return D\img()->where('src', $src);
+    /**
+     * Create an image (with his attributes)
+     * @param $src String the url of the resource
+     * @param $alt String the "alt" of the image
+     * @return InlineNode
+     */
+    function img(string $src, string $alt = 'An image') : D\InlineNode {
+        return D\img()
+            ->where('src', $src)
+            ->where('alt', $alt);
+    }
+
 }

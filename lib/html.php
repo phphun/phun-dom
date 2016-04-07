@@ -58,7 +58,7 @@ function preped($base, ...$nodes) {
  * @param string lang the language of the page
  * @return an instance of Document
  */
-function html(string $title, string $charset = 'utf-8', string $lang = 'utf-8') {
+function html(string $title, string $charset = 'utf-8', string $lang = 'en') {
     return new Document($title, $charset, $lang);
 }
 

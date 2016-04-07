@@ -33,16 +33,6 @@ require_once 'lib/helper.php';
 // Temp examples
 
 $html = dom\html('Hello World');
-
-$head = $html->head();
-$body = $html->body();
-
-$img = dom\helper\img('http://www.w3.org/Icons/w3c_home');
-
-$ln = dom\a()->where('href', '#lock')->append(dom\pcdata("hello"));
-$body->append($ln);
-$body->append(dom\br(), $img);
-
 echo $html;
 
 ?>

@@ -221,7 +221,7 @@ class BlockNode extends CompositeNode implements Block {
 }
 
 // PCData (raw text)
-class PCDATA implements Inline {
+class PCDATA implements Inline, Block {
 
     // Attributes
     protected $raw;
