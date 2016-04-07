@@ -8,6 +8,8 @@ Tag implementation
     - kbd/samp
     - Embed/Object
     - Math balise
+    - Ruby tag
+
 
 Improvement
-    - Typesafe attributes (not for now...  
+    - Typesafe attributes (not for now... )
