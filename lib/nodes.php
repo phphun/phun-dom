@@ -35,6 +35,7 @@ interface Inline     {}
 interface Closed     {}
 interface MetaHeader {}
 interface InMap      {}
+interface ListElt    {}
 
 
 /**
@@ -448,3 +449,6 @@ class Map extends CompositeNode implements Block {
         return $this;
     }
 }
+
+// Ol/ul/li
+class Listable {}
