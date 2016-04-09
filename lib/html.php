@@ -46,7 +46,7 @@ function append($base, ...$nodes) {
  * @param Nodes nodes list
  * @return the receiver
  */
-function preped($base, ...$nodes) {
+function prepend($base, ...$nodes) {
     return $base->prepend(...$nodes);
 }
 
@@ -565,5 +565,24 @@ function p() {
 function pre() {
     return block('pre');
 }
+
+
+/**
+ * Create a Ol Block
+ * @return Enum object
+ */
+function ol() {
+    return new Enum('ol');
+}
+
+/**
+ * Create a Ul Block
+ * @return Enum object
+ */
+function ul() {
+    return new Enum('ul');
+}
+
+
 
 

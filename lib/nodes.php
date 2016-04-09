@@ -431,7 +431,7 @@ class Map extends CompositeNode implements Block {
 
     /**
      * Append nodes to the current element
-     * @param ...MetaHeader
+     * @param ...InMap
      * @return return the current instance of chaining
      */
     public function append(InMap...$nodes) {
@@ -451,4 +451,25 @@ class Map extends CompositeNode implements Block {
 }
 
 // Ol/ul/li
-class Listable {}
+class Enum extends BlockNode {
+    /**
+     * Append nodes to the current element
+     * @param ...MetaHeader
+     * @return return the current instance of chaining
+     */
+    public function append(ListElt...$nodes) {
+        $this->content = array_merge($this->content, $nodes);
+        return $this;
+    }
+
+    /**
+     * Prepend nodes to the current element
+     * @param ...Blocks Block, Inline or Closde
+     * @return return the current instance of chaining
+     */
+    public function prepend(ListElt ...$nodes) {
+        $this->content = array_merge($nodes, $this->content);
+        return $this;
+    }
+}
+
