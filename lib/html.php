@@ -591,7 +591,3 @@ function ul() {
 function li() {
     return new EnumElt('li');
 }
-
-
-
-
