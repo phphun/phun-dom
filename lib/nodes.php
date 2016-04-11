@@ -289,26 +289,7 @@ class Body extends CompositeNode {
     public function __construct() {
         parent::__construct('body');
     }
-
-    /**
-     * Append nodes to the current element
-     * @param ...Node
-     * @return return the current instance of chaining
-     */
-    public function append(Node...$nodes) {
-        $this->content = array_merge($this->content, $nodes);
-        return $this;
-    }
-
-    /**
-     * Prepend nodes to the current element
-     * @param ...Blocks Block, Inline or Closde
-     * @return return the current instance of chaining
-     */
-    public function prepend(Node ...$nodes) {
-        $this->content = array_merge($nodes, $this->content);
-        return $this;
-    }
+    use AppendBlock;
 }
 
 // Plain Balise
@@ -400,7 +381,7 @@ class Document extends CompositeNode {
     }
 
     /**
-     * Returns the header reférence
+     * Returns the header reference
      * @return Header header element
      */
     public function head() {
