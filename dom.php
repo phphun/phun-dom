@@ -41,7 +41,7 @@ $body->append(HTML\ol(
     HTML\li(dom\pcdata("Yo"))
 ));
 
-// $body->append(HTML\li(HTML\pcdata("yo")));
+$body->append(HTML\strong("Yo"));
 
 echo $html;
 

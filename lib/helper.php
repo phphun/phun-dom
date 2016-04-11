@@ -51,6 +51,11 @@ namespace phun\HTML {
             ->where('alt', $alt);
     }
 
+    function unsafe_pcdata($elt) {
+        if(is_string($elt)) return pcdata($elt);
+        return $elt;
+    }
+
     function to_li(D\Node $elt) {
         if($elt instanceof D\ListElt) return $elt;
         return D\li()
@@ -81,6 +86,78 @@ namespace phun\HTML {
      */
     function li(D\Block ... $e) : D\ListElt {
         return D\li()->append(...$e);
+    }
+
+    /**
+     * Create a Span element
+     * @param List of element to insert into the tag
+     */
+    function span(...$n) : D\Inline {
+        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+        return D\span()->append(...$nodes);
+    }
+
+    /**
+     * Create a Strong element
+     * @param List of element to insert into the tag
+     */
+    function strong(...$n) : D\Inline {
+        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+        return D\strong()->append(...$nodes);
+    }
+
+    /**
+     * Create a Small element
+     * @param List of element to insert into the tag
+     */
+    function small(...$n) : D\Inline {
+        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+        return D\small()->append(...$nodes);
+    }
+
+    /**
+     * Create a Sub element
+     * @param List of element to insert into the tag
+     */
+    function sub(...$n) : D\Inline {
+        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+        return D\sub()->append(...$nodes);
+    }
+
+    /**
+     * Create a Sup element
+     * @param List of element to insert into the tag
+     */
+    function sup(...$n) : D\Inline {
+        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+        return D\sup()->append(...$nodes);
+    }
+
+    /**
+     * Create an U element
+     * @param List of element to insert into the tag
+     */
+    function u(...$n) : D\Inline {
+        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+        return D\u()->append(...$nodes);
+    }
+
+    /**
+     * Create an I element
+     * @param List of element to insert into the tag
+     */
+    function i(...$n) : D\Inline {
+        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+        return D\i()->append(...$nodes);
+    }
+
+    /**
+     * Create a B element
+     * @param List of element to insert into the tag
+     */
+    function b(...$n) : D\Inline {
+        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+        return D\b()->append(...$nodes);
     }
 
 }
