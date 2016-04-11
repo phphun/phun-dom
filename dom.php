@@ -41,7 +41,7 @@ $body->append(HTML\ol(
     HTML\li(dom\pcdata("Yo"))
 ));
 
-$body->append(HTML\strong("Yo"));
+$body->append(HTML\strong("Yo"), HTML\iframe("https://www.google.fr"));
 
 echo $html;
 

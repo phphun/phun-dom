@@ -160,4 +160,10 @@ namespace phun\HTML {
         return D\b()->append(...$nodes);
     }
 
+    function iframe(string $src, string $alt = "Your browser doesnt support iframe") : D\Inline {
+        return D\iframe()
+            ->where('src', $src)
+            ->append(pcdata($alt));
+    }
+
 }

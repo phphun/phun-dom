@@ -591,3 +591,11 @@ function ul() {
 function li() {
     return new EnumElt('li');
 }
+
+/**
+ * Create an Iframe Block
+ * @return Inline object
+ */
+function iframe() {
+    return inline('iframe');
+}
