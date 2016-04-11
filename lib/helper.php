@@ -31,6 +31,15 @@ namespace phun\HTML {
     use \phun\dom as D;
 
     /**
+     * Create a PCData node
+     * @param string data; the raw text
+     * @return a PCDATA node
+     */
+    function pcdata(string $data) {
+        return new D\PCDATA($data);
+    }
+
+    /**
      * Create an image (with his attributes)
      * @param $src String the url of the resource
      * @param $alt String the "alt" of the image
@@ -40,6 +49,38 @@ namespace phun\HTML {
         return D\img()
             ->where('src', $src)
             ->where('alt', $alt);
+    }
+
+    function to_li(D\Node $elt) {
+        if($elt instanceof D\ListElt) return $elt;
+        return D\li()
+            ->append($elt);
+    }
+
+    /**
+     * Create an Ul element
+     * @param Node $n list of Node
+     */
+     function ul(D\Node...$n) : D\Enum {
+        $nodes = array_map(function($e) { return to_li($e); }, $n);
+        return D\ul()->append(...$nodes);
+    }
+
+    /**
+     * Create an Ol element
+     * @param Node $n list of Node
+     */
+    function ol(D\Node...$n) : D\Enum {
+        $nodes = array_map(function($e) { return to_li($e); }, $n);
+        return D\ol()->append(...$nodes);
+    }
+
+    /**
+     * Create a Li element
+     * @param Block $n list of Block
+     */
+    function li(D\Block ... $e) : D\ListElt {
+        return D\li()->append(...$e);
     }
 
 }

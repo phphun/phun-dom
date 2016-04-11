@@ -584,5 +584,14 @@ function ul() {
 }
 
 
+/**
+ * Create a li Block
+ * @return EnumElt object
+ */
+function li() {
+    return new EnumElt('li');
+}
+
+
 
 

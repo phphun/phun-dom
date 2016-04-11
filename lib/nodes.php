@@ -37,6 +37,29 @@ interface MetaHeader {}
 interface InMap      {}
 interface ListElt    {}
 
+// Generic Trait
+trait AppendBlock {
+    /**
+     * Append nodes to the current element
+     * @param ...Blocks Block, Inline or Closed
+     * @return return the current instance of chaining
+     */
+    public function append(Block...$nodes) {
+        $this->content = array_merge($this->content, $nodes);
+        return $this;
+    }
+
+    /**
+     * Prepend nodes to the current element
+     * @param ...Blocks Block, Inline or Closde
+     * @return return the current instance of chaining
+     */
+    public function prepend(Block ...$nodes) {
+        $this->content = array_merge($nodes, $this->content);
+        return $this;
+    }
+}
+
 
 /**
  * Abstract HTML's node representation
@@ -200,29 +223,11 @@ class InlineNode extends CompositeNode implements Inline, Closed, Block {
 
 // Typed Block
 class BlockNode extends CompositeNode implements Block {
-    /**
-     * Append nodes to the current element
-     * @param ...Blocks Block, Inline or Closed
-     * @return return the current instance of chaining
-     */
-    public function append(Block...$nodes) {
-        $this->content = array_merge($this->content, $nodes);
-        return $this;
-    }
-
-    /**
-     * Prepend nodes to the current element
-     * @param ...Blocks Block, Inline or Closde
-     * @return return the current instance of chaining
-     */
-    public function prepend(Block ...$nodes) {
-        $this->content = array_merge($nodes, $this->content);
-        return $this;
-    }
+    use AppendBlock;
 }
 
 // PCData (raw text)
-class PCDATA implements Inline, Block {
+class PCDATA extends Node  implements Inline, Block {
 
     // Attributes
     protected $raw;
@@ -451,7 +456,7 @@ class Map extends CompositeNode implements Block {
 }
 
 // Ol/ul/li
-class Enum extends BlockNode {
+class Enum extends CompositeNode implements Block {
     /**
      * Append nodes to the current element
      * @param ...MetaHeader
@@ -471,5 +476,9 @@ class Enum extends BlockNode {
         $this->content = array_merge($nodes, $this->content);
         return $this;
     }
+}
+
+class EnumElt extends CompositeNode implements ListElt {
+    use AppendBlock;
 }
 

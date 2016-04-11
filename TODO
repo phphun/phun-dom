@@ -1,6 +1,5 @@
 Tag implementation
     - Dl, dt, dd etc.
-    - Ul/Ol/li
     - Formlet elements
     - Table/tr/td etc.
     - Figure elements (grouping)

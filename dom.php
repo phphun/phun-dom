@@ -33,6 +33,14 @@ require_once 'lib/helper.php';
 // Temp examples
 
 $html = dom\html('Hello World');
+$body = $html->body();
+
+$body->append(HTML\ol(
+    HTML\pcdata("Hello World"),
+    HTML\pcdata("Hello foo"),
+    HTML\li(dom\pcdata("Yo"))
+));
+
 echo $html;
 
 ?>
