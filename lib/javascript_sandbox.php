@@ -51,11 +51,21 @@ trait Sandbox {
     }
 
     /**
+     * Get all referenced nodes
+     */
+    public function referenced() {
+        return $this->referenced_nodes;
+    }
+
+    /**
      * Low level binding for referencing node
      */
-    protected function reference(Node ...$nodes) {
+    protected function reference(...$nodes) {
         foreach($nodes as $node) {
-            $this->referenced_nodes[$node->getUID()];
+            if (!is_string($node) && $node->isReferenceable()) {
+                $this->referenced_nodes[$node->getUID()] = $node;
+                $this->reference(...array_values($node->referenced()));
+            }
         }
     }
 }

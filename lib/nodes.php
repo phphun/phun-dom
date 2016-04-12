@@ -28,6 +28,8 @@ declare(strict_types=1);
  */
 namespace phun\dom;
 
+use \phun\javascript as JS;
+
 
 // Interface for balise distinction
 interface Block      {}
@@ -47,19 +49,46 @@ trait AppendBlock {
      */
     public function append(Block...$nodes) {
         $this->content = array_merge($this->content, $nodes);
+        $this->reference(...$nodes);
         return $this;
     }
 
     /**
      * Prepend nodes to the current element
-     * @param ...Blocks Block, Inline or Closde
+     * @param ...Blocks Block, Inline or Closed
      * @return return the current instance of chaining
      */
     public function prepend(Block ...$nodes) {
         $this->content = array_merge($nodes, $this->content);
+        $this->reference(...$nodes);
         return $this;
     }
 }
+
+trait AppendText {
+    /**
+     * Append nodes to the current element
+     * @param ...String, Inline or Closed
+     * @return return the current instance of chaining
+     */
+    public function append(string...$nodes) {
+        $this->content = array_merge($this->content, $nodes);
+        $this->reference(...$nodes);
+        return $this;
+    }
+
+    /**
+     * Prepend nodes to the current element
+     * @param ...String, Inline or Closde
+     * @return return the current instance of chaining
+     */
+    public function prepend(string ...$nodes) {
+        $this->content = array_merge($nodes, $this->content);
+        $this->reference(...$nodes);
+        return $this;
+    }
+}
+
 
 
 /**
@@ -72,6 +101,8 @@ abstract class Node {
     protected $uniq_id;
     protected $attributes;
 
+    // Use JavaScript Sandbox
+    use JS\Sandbox;
 
     /**
      * Build a Generic Tag
@@ -81,6 +112,14 @@ abstract class Node {
         $this->name = $name;
         $this->uniq_id = \phun\utils\data_id($name);
         $this->attributes = [];
+        $this->init_sandbox();
+    }
+
+    /**
+     * Check if a node is referenceable
+     */
+    public function isReferenceable() : bool {
+        return true;
     }
 
 
@@ -214,6 +253,7 @@ class InlineNode extends CompositeNode implements Inline, Closed, Block {
      */
     public function append(Inline...$nodes) {
         $this->content = array_merge($this->content, $nodes);
+        $this->reference(...$nodes);
         return $this;
     }
 
@@ -224,6 +264,7 @@ class InlineNode extends CompositeNode implements Inline, Closed, Block {
      */
     public function prepend(Inline ...$nodes) {
         $this->content = array_merge($nodes, $this->content);
+        $this->reference(...$nodes);
         return $this;
     }
 
@@ -235,7 +276,7 @@ class BlockNode extends CompositeNode implements Block {
 }
 
 // PCData (raw text)
-class PCDATA extends Node  implements Inline, Block {
+class PCDATA extends Node implements Inline, Block {
 
     // Attributes
     protected $raw;
@@ -256,6 +297,10 @@ class PCDATA extends Node  implements Inline, Block {
         return $this->raw;
     }
 
+    public function isReferenceable() : bool {
+        return false;
+    }
+
 }
 
 // CData (raw unparsed text)
@@ -271,9 +316,11 @@ class CDATA extends PCDATA {
 }
 
 // Meta-decoration of balise
-class MetadataLeaf extends Leaf implements MetaHeader, Inline          {}
-class MetadataNode extends CompositeNode implements MetaHeader, Inline {}
-class Template     extends BlockNode implements MetaHeader             {}
+class MetadataLeaf extends Leaf      implements MetaHeader, Inline, Block  {}
+class Template     extends BlockNode implements MetaHeader                 {}
+class MetadataNode extends CompositeNode implements MetaHeader, Inline, Block {
+    use AppendText;
+}
 
 // Header block
 class Header extends CompositeNode {
@@ -289,6 +336,7 @@ class Header extends CompositeNode {
      */
     public function append(MetaHeader...$nodes) {
         $this->content = array_merge($this->content, $nodes);
+        $this->reference(...$nodes);
         return $this;
     }
 
@@ -299,6 +347,7 @@ class Header extends CompositeNode {
      */
     public function prepend(MetaHeader ...$nodes) {
         $this->content = array_merge($nodes, $this->content);
+        $this->reference(...$nodes);
         return $this;
     }
 }
@@ -391,6 +440,7 @@ class Document extends CompositeNode {
     protected $head;
     protected $body;
     protected $title;
+    protected $hash;
 
     /**
      * Create a Document (HTML) with easy access to head and body. Title, lang and charset are
@@ -407,6 +457,7 @@ class Document extends CompositeNode {
         $title = (new Plain('title'))->append(pcdata($title));
         $this->head = (new Header())->prepend($meta)->append($title);
         $this->body = new Body();
+        $this->hash = uniqid('$PHUN_INTERNAL_');
     }
 
     /**
@@ -430,8 +481,23 @@ class Document extends CompositeNode {
      * @return a String representation of an HTML Document
      */
     public function __toString() : string {
+        $this->body->append($this->createSandbox());
         $this->content = [$this->head, $this->body];
         return '<!doctype html>' . (parent::__toString());
+    }
+
+    public function referenced() {
+        return array_merge(
+            $this->head->referenced(),
+            $this->body->referenced()
+        );
+    }
+
+    protected function createSandbox() {
+        $script = new MetadataNode('script');
+        $content = $this->hash . '={};';
+        $script->append($content);
+        return $script;
     }
 
 }
@@ -451,6 +517,7 @@ class Map extends CompositeNode implements Block {
      */
     public function append(InMap...$nodes) {
         $this->content = array_merge($this->content, $nodes);
+        $this->reference(...$nodes);
         return $this;
     }
 
@@ -461,6 +528,7 @@ class Map extends CompositeNode implements Block {
      */
     public function prepend(InMap ...$nodes) {
         $this->content = array_merge($nodes, $this->content);
+        $this->reference(...$nodes);
         return $this;
     }
 }
@@ -474,6 +542,7 @@ class Enum extends CompositeNode implements Block {
      */
     public function append(ListElt...$nodes) {
         $this->content = array_merge($this->content, $nodes);
+        $this->reference(...$nodes);
         return $this;
     }
 
@@ -484,6 +553,7 @@ class Enum extends CompositeNode implements Block {
      */
     public function prepend(ListElt ...$nodes) {
         $this->content = array_merge($nodes, $this->content);
+        $this->reference(...$nodes);
         return $this;
     }
 }
