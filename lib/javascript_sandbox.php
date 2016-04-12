@@ -22,28 +22,40 @@
 
 declare(strict_types=1);
 
-namespace phun;
 
-// Library inclusion
-require_once 'lib/utils.php';
-require_once 'lib/javascript_sandbox.php';
-require_once 'lib/nodes.php';
-require_once 'lib/html.php';
-require_once 'lib/helper.php';
-
-// Temp examples
-
-$html = dom\html('Hello World');
-$body = $html->body();
-
-$body->append(HTML\ol(
-    HTML\pcdata("Hello World"),
-    HTML\pcdata("Hello foo"),
-    HTML\li(dom\cdata("<strong>Yo</strong>")),
-    HTML\span("yo")
-));
+/**
+ * Provide a Javascript Sandbox for Dom manipulation
+ * @author Van de Woestyne Xavier <xaviervdw@gmail.com>
+ */
+namespace phun\javascript;
 
 
-echo $html;
+trait Sandbox {
+    // Attributes
+    protected $referenced_nodes;
+    protected $colored;
 
-?>
+    /**
+     * Initialize de sandbox
+     */
+    protected function init_sandbox() {
+        $this->referenced_nodes = [];
+        $this->colored = false;
+    }
+
+    /**
+     * Check if a node is used in JavaScript
+     */
+    protected function is_colored() {
+        return $this->colored; 
+    }
+
+    /**
+     * Low level binding for referencing node
+     */
+    protected function reference(Node ...$nodes) {
+        foreach($nodes as $node) {
+            $this->referenced_nodes[$node->getUID()];
+        }
+    }
+}

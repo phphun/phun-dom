@@ -37,6 +37,7 @@ interface MetaHeader {}
 interface InMap      {}
 interface ListElt    {}
 
+
 // Generic Trait
 trait AppendBlock {
     /**
@@ -139,6 +140,13 @@ abstract class Node {
      */
     protected function baseTagToString() : string {
         return '<' . $this->name . $this->attrToString() ;
+    }
+
+    /**
+     * Return the UID of a node
+     */
+    public function getUID() : string {
+        return $this->uniq_id;
     }
 
 }
