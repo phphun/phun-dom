@@ -36,12 +36,18 @@ require_once 'lib/helper.php';
 $html = dom\html('Hello World');
 $body = $html->body();
 
-$body->append(HTML\ol(
+
+
+$li = HTML\li(dom\cdata("<strong>Yo</strong>"));
+$ol = HTML\ol(
     HTML\pcdata("Hello World"),
     HTML\pcdata("Hello foo"),
-    HTML\li(dom\cdata("<strong>Yo</strong>")),
-    HTML\span("yo")
-));
+    $li, clone $li,
+    HTML\span(HTML\span("FOO"))
+);
+
+
+$body->append($ol, clone $ol);
 
 
 echo $html;

@@ -110,8 +110,8 @@ abstract class Node {
      */
     public function __construct(string $name) {
         $this->name = $name;
-        $this->uniq_id = \phun\utils\data_id($name);
         $this->attributes = [];
+        $this->newID();
         $this->init_sandbox();
     }
 
@@ -120,6 +120,15 @@ abstract class Node {
      */
     public function isReferenceable() : bool {
         return true;
+    }
+
+    public function newID() {
+        if ($this->name !== null)
+            $this->uniq_id = \phun\utils\data_id($this->name);
+    }
+
+    function __clone() {
+        $this->newID();
     }
 
 
@@ -237,6 +246,14 @@ abstract class CompositeNode extends Node {
         }
         $result .= '</'.$this->name.'>';
         return $result;
+    }
+
+    function __clone() {
+        $this->newID();
+        $this->content = array_map(function($e) {
+            return clone $e;},
+            $this->content
+        );
     }
 
 
