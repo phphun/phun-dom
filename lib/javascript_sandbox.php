@@ -47,7 +47,7 @@ trait Sandbox {
      * Check if a node is used in JavaScript
      */
     protected function is_colored() {
-        return $this->colored; 
+        return $this->colored;
     }
 
     /**
