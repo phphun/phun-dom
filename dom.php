@@ -38,10 +38,9 @@ $body = $html->body();
 $body->append(HTML\ol(
     HTML\pcdata("Hello World"),
     HTML\pcdata("Hello foo"),
-    HTML\li(dom\pcdata("Yo"))
+    HTML\li(dom\cdata("<strong>Yo</strong>"))
 ));
 
-$body->append(HTML\strong("Yo"), HTML\iframe("https://www.google.fr"));
 
 echo $html;
 

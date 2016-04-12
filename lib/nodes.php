@@ -250,6 +250,18 @@ class PCDATA extends Node  implements Inline, Block {
 
 }
 
+// CData (raw unparsed text)
+class CDATA extends PCDATA {
+    /**
+     * Magic string coersion
+     * @return a String representation of a PCDATA
+     */
+    public function __toString() : string {
+        return htmlspecialchars($this->raw);
+    }
+
+}
+
 // Meta-decoration of balise
 class MetadataLeaf extends Leaf implements MetaHeader, Inline          {}
 class MetadataNode extends CompositeNode implements MetaHeader, Inline {}
@@ -323,6 +335,15 @@ class Plain extends CompositeNode implements MetaHeader, Inline {
  */
 function pcdata(string $data) {
     return new PCDATA($data);
+}
+
+/**
+ * Create a CData node
+ * @param string data; the raw text
+ * @return a CDATA node
+ */
+function cdata(string $data) {
+    return new CDATA($data);
 }
 
 /**

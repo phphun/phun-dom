@@ -31,6 +31,15 @@ namespace phun\HTML {
     use \phun\dom as D;
 
     /**
+     * Create a CData node
+     * @param string data; the raw text
+     * @return a CDATA node
+     */
+    function cdata(string $data) {
+        return new D\CDATA($data);
+    }
+
+    /**
      * Create a PCData node
      * @param string data; the raw text
      * @return a PCDATA node
@@ -38,6 +47,7 @@ namespace phun\HTML {
     function pcdata(string $data) {
         return new D\PCDATA($data);
     }
+
 
     /**
      * Create an image (with his attributes)
