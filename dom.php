@@ -30,25 +30,3 @@ require_once 'lib/javascript_sandbox.php';
 require_once 'lib/nodes.php';
 require_once 'lib/html.php';
 require_once 'lib/helper.php';
-
-// Temp examples
-
-$html = dom\html('Hello World');
-$body = $html->body();
-
-
-
-$li = HTML\li(dom\cdata("<strong>Yo</strong>"));
-$ol = HTML\ol(
-    HTML\pcdata("Hello World"),
-    HTML\pcdata("Hello foo"),
-    $li, clone $li,
-    HTML\span(HTML\span("FOO"))
-);
-
-
-$body->append($ol, clone $ol);
-
-
-echo $html;
-?>
