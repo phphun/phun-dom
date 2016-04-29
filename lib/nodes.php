@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace phun\dom;
 
 use \phun\javascript as JS;
+use phun\dom\CompositeNode;
 
 
 // Interface for balise distinction
@@ -550,6 +551,33 @@ class Map extends CompositeNode implements Block {
     }
 }
 
+class Option extends CompositeNode implements Inline {
+  use AppendBlock;
+}
+class FormOption extends CompositeNode implements Inline, Block {
+    /**
+     * Append nodes to the current element
+     * @param ...MetaHeader
+     * @return return the current instance of chaining
+     */
+    public function append(Option...$nodes) {
+        $this->content = array_merge($this->content, $nodes);
+        $this->reference(...$nodes);
+        return $this;
+    }
+
+    /**
+     * Prepend nodes to the current element
+     * @param ...Blocks Block, Inline or Closde
+     * @return return the current instance of chaining
+     */
+    public function prepend(Option ...$nodes) {
+        $this->content = array_merge($nodes, $this->content);
+        $this->reference(...$nodes);
+        return $this;
+    }
+}
+
 // Ol/ul/li
 class Enum extends CompositeNode implements Block {
     /**
@@ -578,4 +606,3 @@ class Enum extends CompositeNode implements Block {
 class EnumElt extends CompositeNode implements ListElt {
     use AppendBlock;
 }
-

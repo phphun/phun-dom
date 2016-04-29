@@ -26,7 +26,7 @@ declare(strict_types=1);
  * Helper for dom construction
  * @author Van de Woestyne Xavier <xaviervdw@gmail.com>
  */
-namespace phun\HTML {
+namespace phun\html {
 
     use \phun\dom as D;
 

@@ -599,3 +599,51 @@ function li() {
 function iframe() {
     return inline('iframe');
 }
+
+/**
+ * Create a Form Block
+ * @return Block A formlet
+ */
+ function form() {
+   return block('form');
+ }
+
+ /**
+  * Create a Fieldset Block
+  * @return Block A Fieldset
+  */
+  function fieldset() {
+    return block('fieldset');
+  }
+
+ /**
+  * Create a Label tag
+  * @return Inline object
+  */
+ function label() {
+     return inline('label');
+ }
+
+ /**
+  * Create an input tag
+  * @return Inline object
+  */
+ function input() {
+     return inline('input');
+ }
+
+ /**
+  * Create a datalist tag
+  * @return Inline object
+  */
+ function datalist() {
+     return new FormOption('datalist');
+ }
+
+ /**
+  * Create an Option tag
+  * @return Inline object
+  */
+ function option() {
+     return new Option('option');
+ }

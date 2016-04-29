@@ -28,5 +28,15 @@ namespace phun;
 require_once 'lib/utils.php';
 require_once 'lib/javascript_sandbox.php';
 require_once 'lib/nodes.php';
-require_once 'lib/html.php';
+require_once 'lib/dom.php';
 require_once 'lib/helper.php';
+
+
+echo dom\form()->append(
+  dom\input()->where('type', 'text')->where('list', 'tests'),
+  dom\datalist()->append(
+    dom\option()->append(dom\pcdata("allo")),
+    dom\option()->append(dom\pcdata("bar")),
+    dom\option()->append(dom\pcdata("foo"))
+  )->where('id', 'tests')
+);
