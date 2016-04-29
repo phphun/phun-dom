@@ -39,6 +39,7 @@ interface Closed     {}
 interface MetaHeader {}
 interface InMap      {}
 interface ListElt    {}
+interface OptionElt  {}
 
 
 // Generic Trait

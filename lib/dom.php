@@ -625,11 +625,60 @@ function iframe() {
  }
 
  /**
+  * Create a legend tag
+  * @todo this tag is not well typed ... :'( 
+  * @return Inline object
+  */
+ function legend() {
+     return inline('legend');
+ }
+
+ /**
   * Create an input tag
   * @return Inline object
   */
  function input() {
      return inline('input');
+ }
+
+ /**
+  * Create an textarea tag
+  * @return Inline object
+  */
+ function textarea() {
+     return inline('textarea');
+ }
+
+ /**
+  * Create a keygen tag
+  * @return Inline object
+  */
+ function keygen() {
+     return inline('keygen');
+ }
+
+ /**
+  * Create an output tag
+  * @return Inline object
+  */
+ function output() {
+     return inline('output');
+ }
+
+ /**
+  * Create a progress tag
+  * @return Inline object
+  */
+ function progress() {
+     return inline('progress');
+ }
+
+ /**
+  * Create a meter tag
+  * @return Inline object
+  */
+ function meter() {
+     return inline('meter');
  }
 
  /**
@@ -641,9 +690,25 @@ function iframe() {
  }
 
  /**
+  * Create a select tag
+  * @return Inline object
+  */
+ function select() {
+     return new FormOption('select');
+ }
+
+ /**
   * Create an Option tag
   * @return Inline object
   */
  function option() {
      return new Option('option');
+ }
+
+ /**
+  * Create an OptionGroup tag
+  * @return Inline object
+  */
+ function optgroup() {
+     return new Option('optgroup');
  }
