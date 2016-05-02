@@ -352,4 +352,25 @@ namespace phun\html {
       return style('text/css', $content, $media, $scoped);
     }
 
+    /**
+     * Create a <title>$title</title> element
+     * @param $title
+     * @return <title> element
+     */
+    function title(string $title) {
+      return D\title($title);
+    }
+
+    /**
+     * create <a href=$href>$content</a> element
+     * @param $href
+     * @param $content
+     * @return <a> element
+     */
+    function a(string $href, ...$content) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $content);
+      return D\a()
+        ->where('href', $href)
+        ->append(...$nodes);
+    }
 }

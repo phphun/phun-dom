@@ -33,6 +33,8 @@ require_once 'lib/helper.php';
 
 
 $page = html\document('Hello World');
-$page->head()->append(html\async_script('yo.js'));
+$page->body()->append(
+  html\a('https://google.be', 'yo')
+);
 
 echo $page;
