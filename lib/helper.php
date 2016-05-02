@@ -321,4 +321,35 @@ namespace phun\html {
       return external_script($src, $type)->where('defer');
     }
 
+    /**
+     * Create a <style $type ?$media ?$scoped>$content</style> element
+     * @param $type
+     * @param $content
+     * @param $media the media query
+     * @param $scoped
+     * @return <style>
+     */
+    function style(string $type, string $content, string $media = null, $scoped = false) {
+      $style = D\style();
+      if (is_string($media)) {
+        $style->where('media', $media);
+      }
+      if ($scoped === true) {
+        $style->where('scoped');
+      }
+      $style->append($content);
+      return $style;
+    }
+
+    /**
+     * Create a <style type=css ?$media ?$scoped>$content</style> element
+     * @param $content
+     * @param $media the media query
+     * @param $scoped
+     * @return <style>
+     */
+    function style_css(string $content, string $media = null, $scoped = false) {
+      return style('text/css', $content, $media, $scoped);
+    }
+
 }
