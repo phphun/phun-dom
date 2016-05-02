@@ -301,6 +301,24 @@ namespace phun\html {
         ->where('type', $type);
     }
 
+    /**
+     * Create a <script src=$src type=$type async> element
+     * @param $src
+     * @param $type (by default text/javascript)
+     * @return <script>
+     */
+    function async_script(string $src, string $type = 'text/javascript') {
+      return external_script($src, $type)->where('async');
+    }
 
+    /**
+     * Create a <script src=$src type=$type defer> element
+     * @param $src
+     * @param $type (by default text/javascript)
+     * @return <script>
+     */
+    function defer_script(string $src, string $type = 'text/javascript') {
+      return external_script($src, $type)->where('defer');
+    }
 
 }

@@ -168,10 +168,13 @@ abstract class Node {
     /**
      * @see mergeAttribute
      */
-    public function where(string $key, $value, string $strategy = ' ') {
+    public function where(string $key, $value = null, string $strategy = ' ') {
+        if ($value === null) {
+          $this->atomic_attributes[] = $key;
+          return $this;
+        }
         return $this->mergeAttribute($key, $value, $strategy);
     }
-
 
     /**
      * Coers attributes to string

@@ -33,7 +33,6 @@ require_once 'lib/helper.php';
 
 
 $page = html\document('Hello World');
-$page->head()->append(html\external_script('test.js'));
-$page->body()->append(html\noscript());
+$page->head()->append(html\async_script('yo.js'));
 
 echo $page;
