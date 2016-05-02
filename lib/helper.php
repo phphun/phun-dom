@@ -202,7 +202,31 @@ namespace phun\html {
             ->append(pcdata($alt));
     }
 
-    // Input elements helpers
+    /**
+     * Create <base> element
+     * @param $href the uri of the base
+     * @param $target the navigation context of the base, _self by default
+     * @return <base> element
+     */
+    function base(string $href, string $target = '_self') {
+      return D\base()
+        ->where('href', $href)
+        ->where('target', $target);
+    }
+
+    /**
+     * Create a <link> element
+     * @param $rel the relationship of the link
+     * @param $type the mime type of the document
+     * @param $href the location of the linked document
+     * @return <link> element
+     */
+    function link(string $rel, string $type, string $href) {
+      return D\link()
+        ->where('rel', $rel)
+        ->where('type', $type)
+        ->where('href', $href);
+    }
 
 
 }
