@@ -287,8 +287,11 @@ namespace phun\html {
      * @return <script>
      */
     function external_script(string $src, string $type = 'text/javascript') {
-      return D\script()->where('src', $src)->where('type', $type)
+      return D\script()
+        ->where('src', $src)
+        ->where('type', $type);
     }
 
+    
 
 }
