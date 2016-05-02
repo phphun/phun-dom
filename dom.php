@@ -34,7 +34,7 @@ require_once 'lib/helper.php';
 
 $page = html\document('Hello World');
 $page->body()->append(
-  html\a('https://google.be', 'yo')
+  html\a('https://google.be', html\abbr('FBI', 'Aiffe Be Aie'))->id('salut')
 );
 
 echo $page;

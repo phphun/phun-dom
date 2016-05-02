@@ -177,6 +177,15 @@ abstract class Node {
     }
 
     /**
+     * Set an ID to a node (shortcut for $elt->where('id', $name))
+     * @param the ID
+     * @return the current instance
+     */
+    public function id(string $name) {
+      return $this->addAttribute('id', $name);
+    }
+
+    /**
      * Coers attributes to string
      * @return an internal representation of attributes
      */

@@ -373,4 +373,14 @@ namespace phun\html {
         ->where('href', $href)
         ->append(...$nodes);
     }
+
+    /**
+     * Create an abbreviation element
+     * @param string the content (abbriged word)
+     * @param string the sense of the abbrev
+     * @return <abbr> element
+     */
+    function abbr(string $content, string $abbrv) {
+      return D\abbr($content, $abbrv);
+    }
 }
