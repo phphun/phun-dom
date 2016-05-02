@@ -229,6 +229,15 @@ namespace phun\html {
     }
 
     /**
+     * Create a <link rel="stylesheet" type="text/css" $href> element
+     * @param $href
+     * @return <link> element
+     */
+    function link_css(string $href) {
+      return link('stylesheet', 'text/css', $href);
+    }
+
+    /**
      * Create a <meta name content> element
      * @param $name the name of the meta
      * @param $content the content of the meta
@@ -292,6 +301,6 @@ namespace phun\html {
         ->where('type', $type);
     }
 
-    
+
 
 }

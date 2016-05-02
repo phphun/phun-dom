@@ -102,6 +102,7 @@ abstract class Node {
     protected $name;
     protected $uniq_id;
     protected $attributes;
+    protected $atomic_attributes;
 
     // Use JavaScript Sandbox
     use JS\Sandbox;
@@ -113,6 +114,7 @@ abstract class Node {
     public function __construct(string $name) {
         $this->name = $name;
         $this->attributes = [];
+        $this->atomic_attributes = [];
         $this->newID();
         $this->init_sandbox();
     }
@@ -179,6 +181,9 @@ abstract class Node {
         $result = ' data-phun-id="' . $this->uniq_id . '"';
         foreach($this->attributes as $key => $value) {
             $result .= ' ' . $key . '="' . $value . '"' ;
+        }
+        foreach(array_unique($this->atomic_attributes) as $elt) {
+          $result .= ' ' . $elt;
         }
         return $result;
     }
