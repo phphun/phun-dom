@@ -268,8 +268,26 @@ namespace phun\html {
      * @return <noscript> element
      */
     function noscript(string $content = 'JavaScript not allowed') {
-      return D\noscript()
-        ->append($content);
+      return D\noscript()->append($content);
+    }
+
+    /**
+     * Create a <script>$src</script> element
+     * @param $src
+     * @return <script> element
+     */
+    function script(string $src) {
+      return D\script()->append($src);
+    }
+
+    /**
+     * Create a <script src=$src type=$type> element
+     * @param $src
+     * @param $type (by default text/javascript)
+     * @return <script>
+     */
+    function external_script(string $src, string $type = 'text/javascript') {
+      return D\script()->where('src', $src)->where('type', $type)
     }
 
 
