@@ -33,6 +33,6 @@ require_once 'lib/helper.php';
 
 
 $page = html\document('Hello World');
-
+$page->body()->append(html\noscript());
 
 echo $page;

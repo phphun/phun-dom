@@ -262,5 +262,15 @@ namespace phun\html {
         ->where('content', (string) $content);
     }
 
+    /**
+     * Create a <noscript>$content</noscript> element
+     * @param $content
+     * @return <noscript> element
+     */
+    function noscript(string $content = 'JavaScript not allowed') {
+      return D\noscript()
+        ->append($content);
+    }
+
 
 }
