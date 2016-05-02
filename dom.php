@@ -32,23 +32,5 @@ require_once 'lib/dom.php';
 require_once 'lib/helper.php';
 
 
-echo dom\form()->append(
-  dom\input()->where('type', 'text'),
-  dom\progress()->where('max', '100')->append(
-    dom\pcdata('0%')
-  )->where('value', '50'),
-  dom\select()->append(
-    dom\option()->append(dom\pcdata("bar")),
-    dom\optgroup()->where('label', 'yoooo'),
-    dom\option()->append(dom\pcdata("foo"))
-  )->where('id', 'tests')
-);
-
-?>
-
-<p>The grapefruit pie had a radius of 12cm and a height of
-2cm.</p>
-<dl>
- <dt>Radius: <dd> <meter min=0 max=20 value=12>12cm</meter>
- <dt>Height: <dd> <meter min=0 max=10 value=2>2cm</meter>
-</dl>
+$t = html\span("to") >> html\span("yo");
+echo $t;

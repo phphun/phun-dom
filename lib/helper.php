@@ -31,6 +31,15 @@ namespace phun\html {
     use \phun\dom as D;
 
     /**
+     * Add arr elements into raw
+     * @param raw the parent node
+     * @param an array with the childs
+     */
+    function add($raw, $arr) {
+      return $raw->append(...$arr);
+    }
+
+    /**
      * Create a CData node
      * @param string data; the raw text
      * @return a CDATA node
