@@ -32,5 +32,6 @@ require_once 'lib/dom.php';
 require_once 'lib/helper.php';
 
 
-$t = html\span("to") >> html\span("yo");
-echo $t;
+$page = html\document('Hello World');
+
+echo $page;

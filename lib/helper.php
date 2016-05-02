@@ -34,6 +34,7 @@ namespace phun\html {
      * Add arr elements into raw
      * @param raw the parent node
      * @param an array with the childs
+     * @return raw
      */
     function add($raw, $arr) {
       return $raw->append(...$arr);
@@ -55,6 +56,16 @@ namespace phun\html {
      */
     function pcdata(string $data) {
         return new D\PCDATA($data);
+    }
+
+    /**
+     * Create an HTML5 Document
+     * @param $title the title of the page
+     * @param $charset the charset of the page ('utf-8' by default)
+     * @param $lang the lang of the page (by default 'en')
+     */
+    function document(string $title, string $charset = 'utf-8', string $lang = 'en') {
+      return D\html($title, $charset, $lang);
     }
 
 
@@ -192,5 +203,6 @@ namespace phun\html {
     }
 
     // Input elements helpers
+
 
 }
