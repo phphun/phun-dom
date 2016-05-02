@@ -203,7 +203,7 @@ namespace phun\html {
     }
 
     /**
-     * Create <base> element
+     * Create <base href target> element
      * @param $href the uri of the base
      * @param $target the navigation context of the base, _self by default
      * @return <base> element
@@ -215,7 +215,7 @@ namespace phun\html {
     }
 
     /**
-     * Create a <link> element
+     * Create a <link rel type href> element
      * @param $rel the relationship of the link
      * @param $type the mime type of the document
      * @param $href the location of the linked document
@@ -226,6 +226,40 @@ namespace phun\html {
         ->where('rel', $rel)
         ->where('type', $type)
         ->where('href', $href);
+    }
+
+    /**
+     * Create a <meta name content> element
+     * @param $name the name of the meta
+     * @param $content the content of the meta
+     * @return <meta name content>
+     */
+    function meta(string $name, string $content) {
+      return D\meta()
+        ->where('name', $name)
+        ->where('content', $content);
+    }
+
+    /**
+     * Create a <meta charset>  element
+     * @param $charset the desired charset
+     * @return <meta charset>
+     */
+    function charset(string $charset) {
+      return D\meta()
+        ->where('charset', $charset);
+    }
+
+    /**
+     * Create a <meta http-equiv content> element
+     * @param $equiv
+     * @param $content
+     * @return <meta http-equiv content> element
+     */
+    function http_equiv(string $equiv, $content) {
+      return D\meta()
+        ->where('http-equiv', $equiv)
+        ->where('content', (string) $content);
     }
 
 
