@@ -31,10 +31,11 @@ require_once 'lib/nodes.php';
 require_once 'lib/dom.php';
 require_once 'lib/helper.php';
 
+$t = filemtime('.');
 
 $page = html\document('Hello World');
 $page->body()->append(
-  html\a('https://google.be', html\abbr('FBI', 'Aiffe Be Aie'))->id('salut')
+  html\span(date('d-m-Y H:i', $t))
 );
 
 echo $page;

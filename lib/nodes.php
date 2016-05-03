@@ -624,3 +624,11 @@ class Enum extends CompositeNode implements Block {
 class EnumElt extends CompositeNode implements ListElt {
     use AppendBlock;
 }
+
+// Unsafe Leaf
+class UnsafeLeaf extends Leaf
+  implements Inline, MetaHeader, InMap, ListElt {}
+
+// Unsafe Block
+class UnsafeBlock extends BlockNode
+  implements Inline, MetaHeader, InMap, ListElt {}

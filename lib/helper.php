@@ -31,6 +31,24 @@ namespace phun\html {
     use \phun\dom as D;
 
     /**
+     * Create a generic and unsafe tag
+     * @param string the tag name
+     * @return an unsafe tag
+     */
+    function unsafe_tag(string $name) {
+      return D\UnsafeBlock($name);
+    }
+
+    /**
+     * Create a generic and unsafe leaf
+     * @param string the tag name
+     * @return an unsafe leaf
+     */
+    function unsafe_leaf(string $name) {
+      return D\UnsafeLeaf($name);
+    }
+
+    /**
      * Add arr elements into raw
      * @param raw the parent node
      * @param an array with the childs
