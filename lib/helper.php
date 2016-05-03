@@ -36,7 +36,7 @@ namespace phun\html {
      * @return an unsafe tag
      */
     function unsafe_tag(string $name) {
-      return D\UnsafeBlock($name);
+      return new D\UnsafeBlock($name);
     }
 
     /**
@@ -45,7 +45,7 @@ namespace phun\html {
      * @return an unsafe leaf
      */
     function unsafe_leaf(string $name) {
-      return D\UnsafeLeaf($name);
+      return new D\UnsafeLeaf($name);
     }
 
     /**
