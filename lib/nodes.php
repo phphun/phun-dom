@@ -398,7 +398,7 @@ class Body extends CompositeNode {
 }
 
 // Plain Balise
-class Plain extends CompositeNode implements MetaHeader, Inline {
+class Plain extends CompositeNode implements MetaHeader, Inline, Block {
     /**
      * Append nodes to the current element
      * @param ...PCDATA

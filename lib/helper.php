@@ -413,10 +413,10 @@ namespace phun\html {
     function area(string $shape, string $href, $coords, string $alt = '') {
       $c = join(',', $coords);
       return D\area()
-        ->with('shape', $shape)
-        ->with('coords', $c)
-        ->with('href', $href)
-        ->with('alt', $alt);
+        ->where('shape', $shape)
+        ->where('coords', $c)
+        ->where('href', $href)
+        ->where('alt', $alt);
     }
 
     /**
@@ -459,6 +459,6 @@ namespace phun\html {
       if(!is_string($datetime)) {
         $datetime = date('Y-m-d H:i', $datetime);
       }
-      return D\time($content)->with('datetime', $datetime);
+      return D\time($content)->where('datetime', $datetime);
     }
 }

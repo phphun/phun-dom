@@ -35,7 +35,7 @@ $t = filemtime('.');
 
 $page = html\document('Hello World');
 $page->body()->append(
-  html\span(date('d-m-Y H:i', $t)),
+  html\time(time(), 'today !'),
   html\unsafe_tag('pre')->append(
     html\unsafe_leaf('hr')
   )
