@@ -410,12 +410,33 @@ namespace phun\html {
      * @param $alt
      * @return <area> element
      */
-    function area(string $shape, $coords, string $href, string $alt = '') {
+    function area(string $shape, string $href, $coords, string $alt = '') {
       $c = join(',', $coords);
       return D\area()
         ->with('shape', $shape)
         ->with('coords', $c)
         ->with('href', $href)
         ->with('alt', $alt);
+    }
+
+    /**
+     * Create a rect area
+     */
+    function rect_area(string $href, $x1, $y1, $x2, $y2, string $alt = '') {
+      return area('rect', $href, [$x1, $y1, $x2, $y2], $alt);
+    }
+
+    /**
+     * Create a circle area
+     */
+    function circle_area(string $href, $x, $y, $radius, string $alt = '') {
+      return area('circle', $href, [$x, $y, $radius], $alt);
+    }
+
+    /**
+     * Create a Poly Area
+     */
+    function poly_area(string $href, $coords, string $alt = '') {
+      return area('poly', $href, $coords, $alt);
     }
 }
