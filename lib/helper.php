@@ -401,4 +401,21 @@ namespace phun\html {
     function abbr(string $content, string $abbrv) {
       return D\abbr($content, $abbrv);
     }
+
+    /**
+     * Create an <area $shape $coords $href $alt>
+     * @param $shape
+     * @param $coords an array
+     * @param $href
+     * @param $alt
+     * @return <area> element
+     */
+    function area(string $shape, $coords, string $href, string $alt = '') {
+      $c = join(',', $coords);
+      return D\area()
+        ->with('shape', $shape)
+        ->with('coords', $c)
+        ->with('href', $href)
+        ->with('alt', $alt);
+    }
 }
