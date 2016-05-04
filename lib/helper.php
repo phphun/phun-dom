@@ -439,4 +439,26 @@ namespace phun\html {
     function poly_area(string $href, $coords, string $alt = '') {
       return area('poly', $href, $coords, $alt);
     }
+
+    /**
+     * Create <var>$content</var> element
+     * @param $content
+     * @return <var> element
+     */
+    function _var(string $content) {
+      return D\_var($contenr);
+    }
+
+    /**
+     * Create a <time $datetime>$content</time> element
+     * @param $datetime string or timestamp
+     * @param $content
+     * @return <time> element
+     */
+    function time($datetime, string $content) {
+      if(!is_string($datetime)) {
+        $datetime = date('Y-m-d H:i', $datetime);
+      }
+      return D\time($content)->with('datetime', $datetime);
+    }
 }
