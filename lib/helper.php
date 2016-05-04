@@ -461,4 +461,23 @@ namespace phun\html {
       }
       return D\time($content)->where('datetime', $datetime);
     }
+
+    /**
+     * Create an <address>$1 $2 $3</adress> element
+     * @param $content list (...) of body
+     * @return <adress> element
+     */
+    function address(...$content) {
+      return D\address()->append(...$content);
+    }
+
+    /**
+     * Create a <map $name>...$content</map> element
+     * @param $name
+     * @param $content list (...) of body
+     * @return <map> element
+     */
+    function map(string $name, ...$content) {
+      return D\map()->where('name', $name)->append(...$content);
+    }
 }
