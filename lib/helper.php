@@ -472,6 +472,15 @@ namespace phun\html {
     }
 
     /**
+     * Create an <article>$1 $2 $3</article> element
+     * @param $content list (...) of body
+     * @return <article> element
+     */
+    function article(...$content) {
+      return D\article()->append(...$content);
+    }
+
+    /**
      * Create a <map $name>...$content</map> element
      * @param $name
      * @param $content list (...) of body
@@ -480,4 +489,6 @@ namespace phun\html {
     function map(string $name, ...$content) {
       return D\map()->where('name', $name)->append(...$content);
     }
+
+
 }
