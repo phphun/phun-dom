@@ -521,6 +521,16 @@ namespace phun\html {
     }
 
     /**
+     * Create an <blockquote>$1 $2 $3</blockquote> element
+     * @param $content list (...) of body
+     * @return <blockquote> element
+     */
+    function blockquote(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\blockquote()->append(...$nodes);
+    }
+
+    /**
      * Create an <audio> element
      * @param $src
      * @param $controls
