@@ -481,6 +481,15 @@ namespace phun\html {
     }
 
     /**
+     * Create an <aside>$1 $2 $3</aside> element
+     * @param $content list (...) of body
+     * @return <aside> element
+     */
+    function aside(...$content) {
+      return D\aside()->append(...$content);
+    }
+
+    /**
      * Create a <map $name>...$content</map> element
      * @param $name
      * @param $content list (...) of body
