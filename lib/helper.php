@@ -517,6 +517,24 @@ namespace phun\html {
     }
 
     /**
+     * Create a <video> element
+     * @param $src
+     * @param $controls
+     * @param $msg
+     * @todo append multiple source support
+     * @return <video> element
+     */
+    function video(string $src,
+      $controls = true,
+      $msg = 'Your user agent does not support the HTML5 Video element') {
+      $video = D\video()->where('src', $src);
+      if ($controls) {
+        $video->where('controls');
+      }
+      return $video->append(D\pcdata($msg));
+    }
+
+    /**
      * Create a <map $name>...$content</map> element
      * @param $name
      * @param $content list (...) of body

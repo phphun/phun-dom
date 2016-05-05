@@ -248,6 +248,10 @@ function video() {
 }
 
 /**
+ * @todo Append source element and type video/audio
+ */
+
+/**
  * Create a sup Block
  * @return InlineNode object
  */
@@ -626,7 +630,7 @@ function iframe() {
 
  /**
   * Create a legend tag
-  * @todo this tag is not well typed ... :'( 
+  * @todo this tag is not well typed ... :'(
   * @return Inline object
   */
  function legend() {
