@@ -485,8 +485,9 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <adress> element
      */
-    function address(...$content) {
-      return D\address()->append(...$content);
+    function address(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\address()->append(...$nodes);
     }
 
     /**
@@ -494,8 +495,9 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <article> element
      */
-    function article(...$content) {
-      return D\article()->append(...$content);
+    function article(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\article()->append(...$nodes);
     }
 
     /**
@@ -503,8 +505,9 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <aside> element
      */
-    function aside(...$content) {
-      return D\aside()->append(...$content);
+    function aside(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\aside()->append(...$nodes);
     }
 
     /**
@@ -512,8 +515,9 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <div> element
      */
-    function div(...$content) {
-      return D\div()->append(...$content);
+    function div(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\div()->append(...$nodes);
     }
 
     /**
