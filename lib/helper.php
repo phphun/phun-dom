@@ -521,6 +521,66 @@ namespace phun\html {
     }
 
     /**
+     * Create an <h1>$1 $2 $3</h1> element
+     * @param $content list (...) of body
+     * @return <h1> element
+     */
+    function h1(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\h1()->append(...$nodes);
+    }
+
+    /**
+     * Create an <h2>$1 $2 $3</h2> element
+     * @param $content list (...) of body
+     * @return <h2> element
+     */
+    function h2(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\h2()->append(...$nodes);
+    }
+
+    /**
+     * Create an <h3>$1 $2 $3</h3> element
+     * @param $content list (...) of body
+     * @return <h3> element
+     */
+    function h3(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\h3()->append(...$nodes);
+    }
+
+    /**
+     * Create an <h4>$1 $2 $3</h4> element
+     * @param $content list (...) of body
+     * @return <h4> element
+     */
+    function h4(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\h4()->append(...$nodes);
+    }
+
+    /**
+     * Create an <h5>$1 $2 $3</h5> element
+     * @param $content list (...) of body
+     * @return <h5> element
+     */
+    function h5(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\h5()->append(...$nodes);
+    }
+
+    /**
+     * Create an <h6>$1 $2 $3</h6> element
+     * @param $content list (...) of body
+     * @return <h6> element
+     */
+    function h6(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\h6()->append(...$nodes);
+    }
+
+    /**
      * Create an <blockquote>$1 $2 $3</blockquote> element
      * @param $content list (...) of body
      * @return <blockquote> element
