@@ -499,6 +499,24 @@ namespace phun\html {
     }
 
     /**
+     * Create an <audio> element
+     * @param $src
+     * @param $controls
+     * @param $msg
+     * @todo append multiple source support
+     * @return <audio> element
+     */
+    function audio(string $src,
+      $controls = true,
+      $msg = 'Your user agent does not support the HTML5 Audio element') {
+      $audio = D\audio()->where('src', $src);
+      if ($controls) {
+        $audio->where('controls');
+      }
+      return $audio->append(D\pcdata($msg));
+    }
+
+    /**
      * Create a <map $name>...$content</map> element
      * @param $name
      * @param $content list (...) of body
