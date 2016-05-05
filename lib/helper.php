@@ -576,5 +576,28 @@ namespace phun\html {
       return D\map()->where('name', $name)->append(...$content);
     }
 
+    /**
+     * Create <br> element
+     * @return <br> element
+     */
+    function br() {
+      return D\br();
+    }
+
+    /**
+     * Create <hr> element
+     * @return <hr> element
+     */
+    function hr() {
+      return D\hr();
+    }
+
+    /**
+     * Create <wbr> element
+     * @return <wbr> element
+     */
+    function wbr() {
+      return D\wbr();
+    }
 
 }
