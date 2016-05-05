@@ -218,6 +218,15 @@ namespace phun\html {
     }
 
     /**
+     * Create a Bdi element
+     * @param List of element to insert into the tag
+     */
+    function bdi(...$n) : D\Inline {
+        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+        return D\bdi()->append(...$nodes);
+    }
+
+    /**
      * Create an Iframe element
      * @param string src the target Document
      * @param string alt the message if browser doesn't support iframe
