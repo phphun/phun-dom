@@ -490,6 +490,15 @@ namespace phun\html {
     }
 
     /**
+     * Create an <div>$1 $2 $3</div> element
+     * @param $content list (...) of body
+     * @return <div> element
+     */
+    function div(...$content) {
+      return D\div()->append(...$content);
+    }
+
+    /**
      * Create a <map $name>...$content</map> element
      * @param $name
      * @param $content list (...) of body
