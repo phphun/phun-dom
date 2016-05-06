@@ -671,4 +671,16 @@ namespace phun\html {
         ->append(D\pcdata($value));
     }
 
+    /**
+     * Create <canvas $id>$message</canvas> element
+     * @param $id
+     * @param $message
+     * @return <canvas> element
+     */
+    function canvas(
+      string $id, string
+      $message = 'Your browser does not support Canvas') {
+      return D\canvas()->id($id)->append(D\pcdata($message));
+    }
+
 }
