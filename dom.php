@@ -36,6 +36,7 @@ $t = filemtime('.');
 $page = html\document('Hello World');
 $page->body()->append(
   html\time(time(), 'today !'),
+  html\button('yoo'),
   html\unsafe_tag('pre')->append(
     html\unsafe_leaf('hr')
   )

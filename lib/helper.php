@@ -660,4 +660,15 @@ namespace phun\html {
       return D\wbr();
     }
 
+    /**
+     * create <button>$value</button>
+     * @param $value
+     * @return <button> element
+     */
+    function button(string $value) {
+      return D\button()
+        ->where('type', 'button')
+        ->append(D\pcdata($value));
+    }
+
 }
