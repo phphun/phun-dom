@@ -683,6 +683,14 @@ namespace phun\html {
       return D\canvas()->id($id)->append(D\pcdata($message));
     }
 
-    
+    /**
+     * Create <cite>$nodes</cite>
+     */
+    function cite(string $n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\cite()->append(...$nodes);
+    }
+
+
 
 }
