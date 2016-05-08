@@ -691,6 +691,14 @@ namespace phun\html {
       return D\cite()->append(...$nodes);
     }
 
+    /**
+     * Create <code>$nodes</code>
+     */
+    function code(string $n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\code()->append(...$nodes);
+    }
+
 
 
 }
