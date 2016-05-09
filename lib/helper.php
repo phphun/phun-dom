@@ -685,6 +685,8 @@ namespace phun\html {
 
     /**
      * Create <cite>$nodes</cite>
+     * @param $nodes
+     * @return <cite> element
      */
     function cite(string $n) {
       $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
@@ -693,6 +695,8 @@ namespace phun\html {
 
     /**
      * Create <code>$nodes</code>
+     * @param $nodes
+     * @return <code> element
      */
     function code(string $n) {
       $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
