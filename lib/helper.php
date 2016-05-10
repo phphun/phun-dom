@@ -704,5 +704,14 @@ namespace phun\html {
     }
 
 
+    /**
+     * create <data $value> element
+     * @param $value
+     * @return <data>
+     */
+    function data(string $value) {
+      return D\data($value);
+    }
+
 
 }
