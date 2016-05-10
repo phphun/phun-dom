@@ -713,5 +713,16 @@ namespace phun\html {
       return D\data($value);
     }
 
+    /**
+     * create <dfn $title>$n</dfn> element
+     * @param $title
+     * @param $nodes
+     * @return <dfn>
+     */
+    function dfn(string $title, ...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\dfn()->where('title', $title)->append(...$nodes);
+    }
+
 
 }
