@@ -521,6 +521,16 @@ namespace phun\html {
     }
 
     /**
+     * Create an <p>$1 $2 $3</p> element
+     * @param $content list (...) of body
+     * @return <p> element
+     */
+    function p(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\p()->append(...$nodes);
+    }
+
+    /**
      * Create an <h1>$1 $2 $3</h1> element
      * @param $content list (...) of body
      * @return <h1> element
@@ -710,7 +720,7 @@ namespace phun\html {
      * @return <data>
      */
     function data(string $value) {
-      return D\data($value);
+      return D \data($value);
     }
 
     /**
