@@ -570,6 +570,16 @@ namespace phun\html {
     }
 
     /**
+     * Create an <main>$1 $2 $3</main> element
+     * @param $content list (...) of body
+     * @return <main> element
+     */
+    function main(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\main()->append(...$nodes);
+    }
+
+    /**
      * Create an <p>$1 $2 $3</p> element
      * @param $content list (...) of body
      * @return <p> element
