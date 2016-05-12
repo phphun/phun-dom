@@ -540,6 +540,16 @@ namespace phun\html {
     }
 
     /**
+     * Create an <mark>$1 $2 $3</mark> element
+     * @param $content list (...) of body
+     * @return <mark> element
+     */
+    function mark(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\mark()->append(...$nodes);
+    }
+
+    /**
      * Create an <h1>$1 $2 $3</h1> element
      * @param $content list (...) of body
      * @return <h1> element
