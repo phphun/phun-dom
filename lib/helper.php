@@ -209,6 +209,15 @@ namespace phun\html {
     }
 
     /**
+     * Create an em element
+     * @param List of element to insert into the tag
+     */
+    function em(...$n) : D\Inline {
+        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+        return D\em()->append(...$nodes);
+    }
+
+    /**
      * Create a Bdo element
      * @param List of element to insert into the tag
      */
