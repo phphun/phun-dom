@@ -766,6 +766,16 @@ namespace phun\html {
     }
 
     /**
+     * create <q>$1 $2 $3</q> element
+     * @param $n nodes list
+     * @return <q> element
+     */
+    function q(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\q()->append(...$nodes);
+    }
+
+    /**
      * create <dfn $title>$n</dfn> element
      * @param $title
      * @param $nodes
