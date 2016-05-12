@@ -493,6 +493,7 @@ class Document extends CompositeNode {
         $title = (new Plain('title'))->append(pcdata($title));
         $this->head = (new Header())->prepend($meta)->append($title);
         $this->body = new Body();
+        $this->client = [];
         $this->hash = uniqid('$PHUN_INTERNAL_');
     }
 
