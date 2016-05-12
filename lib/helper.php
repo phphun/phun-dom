@@ -550,6 +550,26 @@ namespace phun\html {
     }
 
     /**
+     * Create an <section>$1 $2 $3</section> element
+     * @param $content list (...) of body
+     * @return <section> element
+     */
+    function section(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\section()->append(...$nodes);
+    }
+
+    /**
+     * Create an <nav>$1 $2 $3</nav> element
+     * @param $content list (...) of body
+     * @return <nav> element
+     */
+    function nav(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\nav()->append(...$nodes);
+    }
+
+    /**
      * Create an <p>$1 $2 $3</p> element
      * @param $content list (...) of body
      * @return <p> element
