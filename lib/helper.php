@@ -530,6 +530,16 @@ namespace phun\html {
     }
 
     /**
+     * Create an <pre>$1 $2 $3</pre> element
+     * @param $content list (...) of body
+     * @return <pre> element
+     */
+    function pre(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\pre()->append(...$nodes);
+    }
+
+    /**
      * Create an <footer>$1 $2 $3</footer> element
      * @param $content list (...) of body
      * @return <footer> element
