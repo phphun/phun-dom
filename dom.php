@@ -39,7 +39,8 @@ $page->body()->append(
   html\button('yoo'),
   html\unsafe_tag('pre')->append(
     html\unsafe_leaf('hr')
-  )
+  ),
+  html\form('get', 'dom.php')
 );
 
 echo $page;

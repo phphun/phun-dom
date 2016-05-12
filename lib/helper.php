@@ -846,5 +846,17 @@ namespace phun\html {
       return D\dfn()->where('title', $title)->append(...$nodes);
     }
 
+    /**
+     * Create <form $method $action> element
+     * @param $method
+     * @param $action
+     * @return <form> element
+     */
+    function form(string $method, string $action) {
+      return D\form()
+        ->where('method', $method)
+        ->where('action', $action);
+    }
+
 
 }
