@@ -724,6 +724,16 @@ namespace phun\html {
     }
 
     /**
+     * create <del>$1 $2 $3</del> element
+     * @param $n nodes list
+     * @return <del> element
+     */
+    function del(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\del()->append(...$nodes);
+    }
+
+    /**
      * create <dfn $title>$n</dfn> element
      * @param $title
      * @param $nodes
