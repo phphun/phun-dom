@@ -540,6 +540,16 @@ namespace phun\html {
     }
 
     /**
+     * Create an <header>$1 $2 $3</header> element
+     * @param $content list (...) of body
+     * @return <header> element
+     */
+    function header(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\header()->append(...$nodes);
+    }
+
+    /**
      * Create an <p>$1 $2 $3</p> element
      * @param $content list (...) of body
      * @return <p> element
