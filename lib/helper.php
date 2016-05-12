@@ -734,6 +734,19 @@ namespace phun\html {
     }
 
     /**
+     * create <del $datetime>$1 $2 $3</del> element
+     * @param $datetime (could be string or time())
+     * @param $n nodes list
+     * @return <del> element
+     */
+    function del_when($datetime, ...$n) {
+      if(!is_string($datetime)) {
+        $datetime = date('Y-m-d H:i', $datetime);
+      }
+      return del(...$n)->where('datetime', $datetime);
+    }
+
+    /**
      * create <dfn $title>$n</dfn> element
      * @param $title
      * @param $nodes
