@@ -642,7 +642,7 @@ function iframe() {
   * @return Inline object
   */
  function input() {
-     return inline('input');
+     return inlineLeaf('input');
  }
 
  /**
