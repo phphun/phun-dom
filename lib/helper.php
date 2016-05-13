@@ -93,7 +93,7 @@ namespace phun\html {
      * @param $alt String the "alt" of the image
      * @return InlineNode
      */
-    function img(string $src, string $alt = 'An image') : D\InlineNode {
+    function img(string $src, string $alt = 'An image') : D\InlineLeaf {
         return D\img()
             ->where('src', $src)
             ->where('alt', $alt);
@@ -887,5 +887,7 @@ namespace phun\html {
       $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
       return D\legend()->append(...$nodes);
     }
+
+
 
 }

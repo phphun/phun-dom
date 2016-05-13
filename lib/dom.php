@@ -410,7 +410,7 @@ function em() {
  * @return InlineNode object
  */
 function img() {
-    return inline('img');
+    return inlineLeaf('img');
 }
 
 /**

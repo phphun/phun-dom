@@ -40,6 +40,7 @@ $page->body()->append(
   html\unsafe_tag('pre')->append(
     html\unsafe_leaf('hr')
   ),
+  html\img("http://www.warparadise.com/contenu/avatar/23017_mini-Jabba_the_Hutt.png"),
   html\form('get', 'dom.php')
 );
 

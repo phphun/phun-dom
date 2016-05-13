@@ -256,6 +256,9 @@ class Leaf extends Node implements Closed, Block{
 
 }
 
+// InlineLeaf
+class InlineLeaf extends Leaf implements Inline {}
+
 // Wrapper for TypeSafe dom representation
 abstract class CompositeNode extends Node {
 
@@ -291,7 +294,6 @@ abstract class CompositeNode extends Node {
             $this->content
         );
     }
-
 
 }
 
@@ -472,6 +474,15 @@ function leaf(string $name) {
  */
 function inline(string $name) {
     return new InlineNode($name);
+}
+
+/**
+ * Create an InlineLeaf  (img for example) node
+ * @param string the name of the tag, 'img' for example
+ * @return an InlinedLeaf Node
+ */
+function inlineLeaf(string $name) {
+    return new InlineLeaf($name);
 }
 
 /**
