@@ -1002,4 +1002,14 @@ namespace phun\html {
       return D\option()->where('value', $value)->append(...$nodes);
     }
 
+    /**
+     * Create <optgroup $label>$nodes</optgroup> element
+     * @param string label
+     * @param nodes
+     * @return <optgroup> element
+     */
+    function optgroup(string $label, ...$nodes) {
+      return D\optgroup()->where('label', $label)->append(...$nodes);
+    }
+
 }
