@@ -33,8 +33,15 @@ require_once 'lib/helper.php';
 
 $t = filemtime('.');
 
+$p = html\span('Hello World');
+$p->id = 'a_special_span';
+
 $page = html\document('Hello World');
 $page->body()->append(
+  $p,
+  html\br(),
+  html\span($p->id),
+  html\br(),
   html\time(time(), 'today !'),
   html\button('yoo'),
   html\unsafe_tag('pre')->append(
