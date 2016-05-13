@@ -147,6 +147,17 @@ abstract class Node {
         return $this;
     }
 
+    public static function removeAttributes(string...$keys) {
+      foreach($keys as $key) {
+        if (array_key_exists($key, $this->attributes)) {
+          unset($this->attributes[$key]);
+        }
+        if ($index = array_search($key, $this->atomic_attributes)) {
+          unset($this->atomic_attributes[$index]);
+        }
+      }
+    }
+
 
     /**
      * Same of addAttribute, but merge the existing attributes
