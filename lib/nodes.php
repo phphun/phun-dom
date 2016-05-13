@@ -353,7 +353,7 @@ class BlockNode extends CompositeNode implements Block {
 }
 
 // PCData (raw text)
-class PCDATA extends Node implements Inline, Block {
+class PCDATA extends Node implements Inline, Block, OptionElt {
 
     // Attributes
     protected $raw;
@@ -621,8 +621,28 @@ class Map extends CompositeNode implements Block {
     }
 }
 
-class Option extends CompositeNode implements Inline {
-  use AppendBlock;
+class Option extends CompositeNode implements OptionElt {
+  /**
+   * Append nodes to the current element
+   * @param ...MetaHeader
+   * @return return the current instance of chaining
+   */
+  public function append(OptionElt...$nodes) {
+      $this->content = array_merge($this->content, $nodes);
+      $this->reference(...$nodes);
+      return $this;
+  }
+
+  /**
+   * Prepend nodes to the current element
+   * @param ...Blocks Block, Inline or Closde
+   * @return return the current instance of chaining
+   */
+  public function prepend(OptionElt ...$nodes) {
+      $this->content = array_merge($nodes, $this->content);
+      $this->reference(...$nodes);
+      return $this;
+  }
 }
 class FormOption extends CompositeNode implements Inline, Block {
     /**
@@ -630,7 +650,7 @@ class FormOption extends CompositeNode implements Inline, Block {
      * @param ...MetaHeader
      * @return return the current instance of chaining
      */
-    public function append(Option...$nodes) {
+    public function append(OptionElt...$nodes) {
         $this->content = array_merge($this->content, $nodes);
         $this->reference(...$nodes);
         return $this;
@@ -641,7 +661,7 @@ class FormOption extends CompositeNode implements Inline, Block {
      * @param ...Blocks Block, Inline or Closde
      * @return return the current instance of chaining
      */
-    public function prepend(Option ...$nodes) {
+    public function prepend(OptionElt ...$nodes) {
         $this->content = array_merge($nodes, $this->content);
         $this->reference(...$nodes);
         return $this;

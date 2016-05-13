@@ -36,6 +36,15 @@ $t = filemtime('.');
 $p = html\span('Hello World');
 $p->id = 'a_special_span';
 
+$form = html\select('hello',
+  html\option('yo', 'il faut dire YO'),
+  html\option('yé', 'il faut dire Yé'),
+  html\optgroup('Yeeee',
+    html\option('yé2', 'il faut dire Yé 2x'),
+    html\option('yo2', 'il faut dire YO 2x')
+  )
+);
+
 $page = html\document('Hello World');
 $page->body()->append(
   $p,
@@ -53,7 +62,7 @@ $page->body()->append(
   html\img("http://www.warparadise.com/contenu/avatar/23017_mini-Jabba_the_Hutt.png"),
   html\input('text', 'test', '')->where('placeholder', 'uh'),
   html\textarea('test', 'yolow'),
-  html\form('get', 'dom.php')
+  html\form('get', 'dom.php')->append($form)
 );
 
 echo $page;

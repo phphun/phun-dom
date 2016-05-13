@@ -999,7 +999,7 @@ namespace phun\html {
      */
     function option(string $value, $content) {
       $nodes = unsafe_pcdata($content);
-      return D\option()->where('value', $value)->append(...$nodes);
+      return D\option()->where('value', $value)->append($nodes);
     }
 
     /**
