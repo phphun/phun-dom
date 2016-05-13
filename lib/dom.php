@@ -658,7 +658,7 @@ function iframe() {
   * @return Inline object
   */
  function keygen() {
-     return inline('keygen');
+     return inlineLeaf('keygen');
  }
 
  /**

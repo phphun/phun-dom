@@ -912,4 +912,13 @@ namespace phun\html {
       return D\textarea()->where('name', $name)->append(pcdata($txt));
     }
 
+    /**
+     * Create <keygen $name> element
+     * @param $name
+     * @return <keygen> element
+     */
+    function keygen(string $name) {
+      return D\keygen()->where('name', $name);
+    }
+
 }
