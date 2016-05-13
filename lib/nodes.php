@@ -147,6 +147,11 @@ abstract class Node {
         return $this;
     }
 
+    /**
+     * Remove attributes from a node
+     * @param list of attributes names
+     * @return eturn the current instance, for chaining operation
+     */
     public static function removeAttributes(string...$keys) {
       foreach($keys as $key) {
         if (array_key_exists($key, $this->attributes)) {
@@ -156,6 +161,7 @@ abstract class Node {
           unset($this->atomic_attributes[$index]);
         }
       }
+      return $this;
     }
 
 
