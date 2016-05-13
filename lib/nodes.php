@@ -241,7 +241,7 @@ abstract class Node {
     public function __get($attribute) {
       if (array_key_exists($attribute, $this->attributes))
         return $this->attributes[$attribute];
-      return (in_array($attribute, $this->atomic_attributes))
+      return (in_array($attribute, $this->atomic_attributes));
     }
 
     /**
@@ -527,6 +527,7 @@ class Document extends CompositeNode {
     protected $body;
     protected $title;
     protected $hash;
+    protected $client;
 
     /**
      * Create a Document (HTML) with easy access to head and body. Title, lang and charset are
