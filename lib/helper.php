@@ -943,12 +943,31 @@ namespace phun\html {
      * @param float max
      * @return <progress> element
      */
-    function progress(string $name, float $value, float $max) {
+    function progress(string $name, float $value, float $max = 100.0) {
       $value = (string) $value;
       $max = (string) $max;
       return D\progress()
         ->where('name', $name)
         ->where('value', $value)
+        ->where('max', $max);
+    }
+
+    /**
+     * Create <progress $name $value $max></progress> Element
+     * @param string name
+     * @param float value
+     * @param float min
+     * @param float max
+     * @return <progress> element
+     */
+    function meter(string $name, float $value, float $min = 0.0, float $max = 100.0) {
+      $value = (string) $value;
+      $min = (string) $min;
+      $max = (string) $max;
+      return D\meter()
+        ->where('name', $name)
+        ->where('value', $value)
+        ->where('min', $min)
         ->where('max', $max);
     }
 

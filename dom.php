@@ -44,6 +44,9 @@ $page->body()->append(
   html\br(),
   html\time(time(), 'today !'),
   html\button('yoo'),
+  html\br(),
+  html\progress('a', 12.0, 24.0),
+  html\meter('b', 50.0),
   html\unsafe_tag('pre')->append(
     html\unsafe_leaf('hr')
   ),
