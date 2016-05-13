@@ -902,4 +902,14 @@ namespace phun\html {
         ->where('value', $value);
     }
 
+    /**
+     * Create <textarea $name>$text</textarea>
+     * @param $name
+     * @param $text
+     * @return <textarea> element
+     */
+    function textarea(string $name, string $txt) {
+      return D\textarea()->where('name', $name)->append(pcdata($txt));
+    }
+
 }
