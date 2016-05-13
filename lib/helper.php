@@ -888,6 +888,18 @@ namespace phun\html {
       return D\legend()->append(...$nodes);
     }
 
-
+    /**
+     * Create <input $type $name $value> element
+     * @param $type
+     * @param $name
+     * @param $value
+     * @return <input> element
+     */
+    function input(string $type, string $name, string $value = '') {
+      return D\input()
+        ->where('type', $type)
+        ->where('name', $name)
+        ->where('value', $value);
+    }
 
 }

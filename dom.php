@@ -41,6 +41,7 @@ $page->body()->append(
     html\unsafe_leaf('hr')
   ),
   html\img("http://www.warparadise.com/contenu/avatar/23017_mini-Jabba_the_Hutt.png"),
+  html\input('text', 'test', '')->where('placeholder', 'uh'),
   html\form('get', 'dom.php')
 );
 
