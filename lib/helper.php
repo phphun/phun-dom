@@ -936,4 +936,20 @@ namespace phun\html {
         ->append(...$nodes);
     }
 
+    /**
+     * Create <progress $name $value $max></progress> Element
+     * @param string name
+     * @param float value
+     * @param float max
+     * @return <progress> element
+     */
+    function progress(string $name, float $value, float $max) {
+      $value = (string) $value;
+      $max = (string) $max;
+      return D\progress()
+        ->where('name', $name)
+        ->where('value', $value)
+        ->where('max', $max);
+    }
+
 }
