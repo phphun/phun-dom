@@ -858,7 +858,25 @@ namespace phun\html {
         ->where('action', $action);
     }
 
+    /**
+     * Create <fieldset>$1 $2 $3</fieldset> element
+     * @param $nodes
+     * @return <fieldset> element
+     */
+    function fieldset(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\fieldset()->append(...$nodes);
+    }
 
+    /**
+     * create <label $for>...$content</label>
+     * @param string for
+     * @param $nodes
+     * @return <label> element
+     */
+    function label(string $for, ...$content) {
+      return D\label()->where('for', $for)->append(...$content);
+    }
 
 
 }
