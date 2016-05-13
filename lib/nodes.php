@@ -233,6 +233,28 @@ abstract class Node {
         return $this->uniq_id;
     }
 
+    // Magic methods
+
+    /**
+     * Magic overloading for easy attributes access
+     */
+    public function __get($attribute) {
+      if (array_key_exists($attribute, $this->attributes))
+        return $this->attributes[$attribute];
+      return (in_array($attribute, $this->atomic_attributes))
+    }
+
+    /**
+     * Magic overloading for easy attributes modificator
+     */
+    public function __set($name, $value) {
+      if ($value === true) {
+        $this->where($name);
+        return;
+      }
+      $this->addAttribute($name, $value);
+    }
+
 }
 
 // An atomic blog representation
