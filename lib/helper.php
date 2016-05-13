@@ -971,4 +971,14 @@ namespace phun\html {
         ->where('max', $max);
     }
 
+    /**
+     * Create <datalist $id>$1 $2 $3 $4</datalist>
+     * @param string id
+     * @param nodes
+     * @return <datalist> element
+     */
+    function datalist(string $id, ...$nodes) {
+      return D\datalist()->id($id)->append(...$nodes);
+    }
+
 }
