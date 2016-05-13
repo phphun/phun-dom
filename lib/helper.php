@@ -981,4 +981,25 @@ namespace phun\html {
       return D\datalist()->id($id)->append(...$nodes);
     }
 
+    /**
+     * Create <select $name>$1 $2 $3 $4</select>
+     * @param string name
+     * @param nodes
+     * @return <select> element
+     */
+    function select(string $name, ...$nodes) {
+      return D\select()->where('name', $name)->append(...$nodes);
+    }
+
+    /**
+     * Create <option $value>$content</option> element
+     * @param string value
+     * @param content
+     * @return <option> element
+     */
+    function option(string $value, $content) {
+      $nodes = unsafe_pcdata($content);
+      return D\option()->where('value', $value)->append(...$nodes);
+    }
+
 }
