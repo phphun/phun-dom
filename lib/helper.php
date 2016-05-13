@@ -915,10 +915,25 @@ namespace phun\html {
     /**
      * Create <keygen $name> element
      * @param $name
-     * @return <keygen> element
+     * @return <keygen> elementa
      */
     function keygen(string $name) {
       return D\keygen()->where('name', $name);
+    }
+
+    /**
+     * Create <output $name $for>$nodes</output>
+     * @param $name
+     * @param $for
+     * @param ...$nodes
+     * @return <output> element
+     */
+    function output(string $name, string $for, ...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\output()
+        ->where('name', $name)
+        ->where('for', $for)
+        ->append(...$nodes);
     }
 
 }
