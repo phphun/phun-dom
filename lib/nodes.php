@@ -128,7 +128,7 @@ abstract class Node {
 
     public function newID() {
         if ($this->name !== null)
-            $this->uniq_id = \phun\utils\data_id($this->name);
+            $this->uniq_id = \phun\util\data_id($this->name);
     }
 
     function __clone() {

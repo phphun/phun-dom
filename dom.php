@@ -62,7 +62,11 @@ $page->body()->append(
   html\img("http://www.warparadise.com/contenu/avatar/23017_mini-Jabba_the_Hutt.png"),
   html\input('text', 'test', '')->where('placeholder', 'uh'),
   html\textarea('test', 'yolow'),
-  html\form('get', 'dom.php')->append($form)
+  html\form('get', 'dom.php')->append($form),
+  html\util\select('select', [
+    'a' => 'A',
+    'b' => 'C'
+  ])
 );
 
 echo $page;

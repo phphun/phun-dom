@@ -27,7 +27,7 @@ declare(strict_types=1);
  * Provide some tools using in "phun"
  * @author Van de Woestyne Xavier <xaviervdw@gmail.com>
  */
-namespace phun\utils;
+namespace phun\util;
 
 /**
  * Create a "potential" uniq ID for tag marks

@@ -1013,3 +1013,27 @@ namespace phun\html {
     }
 
 }
+
+/**
+ * Precise helpers
+ * @author Van de Woestyne Xavier <xaviervdw@gmail.com>
+ */
+namespace phun\html\util {
+
+  use \phun\html as H;
+
+  /**
+   * Create an selection element
+   * @param string the name of the select element
+   * @param an array ($value=>$text) for the options
+   */
+  function select(string $name, $array) {
+    $result = [];
+    foreach($array as $value => $content) {
+      $result[] = H\option($value, $content);
+    }
+    return H\select($name, ...$result);
+  }
+
+
+}
