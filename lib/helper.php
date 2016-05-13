@@ -878,5 +878,14 @@ namespace phun\html {
       return D\label()->where('for', $for)->append(...$content);
     }
 
+    /**
+     * Create <legend>$1 $2 $3</legend> element
+     * @param $nodes
+     * @return <legend> element
+     */
+    function legend(...$n) {
+      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+      return D\legend()->append(...$nodes);
+    }
 
 }
