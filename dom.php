@@ -66,6 +66,9 @@ $page->body()->append(
   html\util\select('select', [
     'a' => 'A',
     'b' => 'C'
+  ]),
+  html\util\completable_input('autocomplete', [
+    'Firefox', 'Google Chrome', 'Safari', 'Vivaldi'
   ])
 );
 

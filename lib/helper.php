@@ -1035,5 +1035,21 @@ namespace phun\html\util {
     return H\select($name, ...$result);
   }
 
+  /**
+   * create a completable input (into a div)
+   * @param string the name of the input
+   * @param array the list of completable terms
+   * @return a <div> with the input and the datalist
+   */
+  function completable_input(string $name, $array) {
+    $id = \phun\util\data_id('completable');
+    $result = array_map(function($e) {
+      return H\option($e, '');
+    }, $array);
+    $list = H\datalist($id, ...$result);
+    $input = H\input('text', $name)->where('list', $id);
+    return H\div($input, $list);
+  }
+
 
 }
