@@ -20,25 +20,29 @@
   SOFTWARE.
 */
 
-declare (strict_types=1);
-
+declare (strict_types = 1);
 
 /**
- * Provide some tools using in "phun"
+ * Provide some tools using in "phun".
+ *
  * @author Van de Woestyne Xavier <xaviervdw@gmail.com>
  */
+
 namespace phun\util;
 
 /**
- * Create a "potential" uniq ID for tag marks
+ * Create a "potential" uniq ID for tag marks.
+ *
  * @param string prefix : the prefix of the uniq ID (maybe the tag name)
  * @param string suffix : the suffix of the uniq ID (for more uniqness)
+ *
  * @return A String as a potential uniq ID (using for mark the dom)
  */
 function data_id(string $prefix = '', string $suffix = null) : string
 {
     $suffix = $suffix ?? time();
-    $prefix = ($prefix === '') ? $prefix : $prefix . '-';
-    $suffix = ($suffix === '') ? $suffix : '-' . $suffix;
-    return uniqid($prefix) . $suffix;
+    $prefix = ($prefix === '') ? $prefix : $prefix.'-';
+    $suffix = ($suffix === '') ? $suffix : '-'.$suffix;
+
+    return uniqid($prefix).$suffix;
 }

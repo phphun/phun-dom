@@ -20,6 +20,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+
+/**
+ * @TODO fix indentation :'(
+ */
+
 declare (strict_types = 1);
 
 /**
@@ -701,7 +706,7 @@ class Document extends CompositeNode
    *
    * @return a String representation of an HTML Document
    */
-  public function __toString() : string
+  public function __toString()
   {
       $this->body->append($this->createSandbox());
       $this->content = [$this->head, $this->body];
@@ -709,12 +714,17 @@ class Document extends CompositeNode
       return '<!doctype html>'.(parent::__toString());
   }
 
+  /**
+  *
+  *
+  */
+
     public function referenced()
     {
         return array_merge(
-      $this->head->referenced(),
-      $this->body->referenced()
-    );
+        $this->head->referenced(),
+        $this->body->referenced()
+      );
     }
 
     protected function createJSHash()

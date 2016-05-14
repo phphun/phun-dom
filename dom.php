@@ -24,6 +24,7 @@ declare (strict_types=1);
 
 namespace phun;
 
+
 // Library inclusion
 require_once 'lib/utils.php';
 require_once 'lib/javascript_sandbox.php';
