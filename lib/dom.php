@@ -20,7 +20,7 @@
   SOFTWARE.
 */
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 
 
@@ -36,7 +36,8 @@ namespace phun\dom;
  * @param Nodes nodes list
  * @return the receiver
  */
-function append($base, ...$nodes) {
+function append($base, ...$nodes)
+{
     return $base->append(...$nodes);
 }
 
@@ -46,7 +47,8 @@ function append($base, ...$nodes) {
  * @param Nodes nodes list
  * @return the receiver
  */
-function prepend($base, ...$nodes) {
+function prepend($base, ...$nodes)
+{
     return $base->prepend(...$nodes);
 }
 
@@ -58,7 +60,8 @@ function prepend($base, ...$nodes) {
  * @param string lang the language of the page
  * @return an instance of Document
  */
-function html(string $title, string $charset = 'utf-8', string $lang = 'en') {
+function html(string $title, string $charset = 'utf-8', string $lang = 'en')
+{
     return new Document($title, $charset, $lang);
 }
 
@@ -66,7 +69,8 @@ function html(string $title, string $charset = 'utf-8', string $lang = 'en') {
  * Create an Header Element
  * @return Header object
  */
-function head() {
+function head()
+{
     return new Header();
 }
 
@@ -74,7 +78,8 @@ function head() {
  * Create a Body Element
  * @return Body object
  */
-function body() {
+function body()
+{
     return new Body();
 }
 
@@ -83,7 +88,8 @@ function body() {
  * Create a base Element
  * @return MetadataLeaf object
  */
-function base() {
+function base()
+{
     return new MetadataLeaf('base');
 }
 
@@ -91,7 +97,8 @@ function base() {
  * Create a link Element
  * @return MetadataLeaf object
  */
-function link() {
+function link()
+{
     return new MetadataLeaf('link');
 }
 
@@ -99,7 +106,8 @@ function link() {
  * Create a meta Element
  * @return MetadataLeaf object
  */
-function meta() {
+function meta()
+{
     return new MetadataLeaf('meta');
 }
 
@@ -107,7 +115,8 @@ function meta() {
  * Create a noscript Element
  * @return MetadataNode object
  */
-function noscript() {
+function noscript()
+{
     return new MetadataNode('noscript');
 }
 
@@ -115,7 +124,8 @@ function noscript() {
  * Create a script Element
  * @return MetadataNode object
  */
-function script() {
+function script()
+{
     return new MetadataNode('script');
 }
 
@@ -123,7 +133,8 @@ function script() {
  * Create a style Element
  * @return MetadataNode object
  */
-function style() {
+function style()
+{
     return new MetadataNode('style');
 }
 
@@ -131,7 +142,8 @@ function style() {
  * Create a template Element
  * @return Template object
  */
-function template() {
+function template()
+{
     return new Template('template');
 }
 
@@ -139,7 +151,8 @@ function template() {
  * Create a title Element
  * @return Plain object
  */
-function title(string $value) {
+function title(string $value)
+{
     return (new Plain('title'))
         ->append(pcdata($value));
 }
@@ -148,7 +161,8 @@ function title(string $value) {
  * Create an A element
  * @return MapElement element
  */
-function a() {
+function a()
+{
     return new MapElement('a');
 }
 
@@ -156,7 +170,8 @@ function a() {
  * Create an Area element
  * @return MapElement element
  */
-function area() {
+function area()
+{
     return new MapElement('area');
 }
 
@@ -167,7 +182,8 @@ function area() {
  * @param string the sense of the abbrev
  * @return Plain object
  */
-function abbr(string $content, string $abbrv) {
+function abbr(string $content, string $abbrv)
+{
     return (new Plain('abbr'))
         ->where('title', $abbrv)
         ->append(pcdata($content));
@@ -177,7 +193,8 @@ function abbr(string $content, string $abbrv) {
  * Create a Var element
  * @return Plain object
  */
-function _var(string $content) {
+function _var(string $content)
+{
     return (new Plain('var'))
         ->append(pcdata($content));
 }
@@ -186,7 +203,8 @@ function _var(string $content) {
  * Create a Time element
  * @return Plain object
  */
-function time(string $content) {
+function time(string $content)
+{
     return (new Plain('time'))
         ->append(pcdata($content));
 }
@@ -195,7 +213,8 @@ function time(string $content) {
  * Create an address Block
  * @return BlockNode object
  */
-function address() {
+function address()
+{
     return block('address');
 }
 
@@ -203,7 +222,8 @@ function address() {
  * Create a Map Block
  * @return Map object
  */
-function map() {
+function map()
+{
     return new Map();
 }
 
@@ -211,7 +231,8 @@ function map() {
  * Create an Article Block
  * @return BlockNode object
  */
-function article() {
+function article()
+{
     return block('article');
 }
 
@@ -219,7 +240,8 @@ function article() {
  * Create an Aside Block
  * @return BlockNode object
  */
-function aside() {
+function aside()
+{
     return block('aside');
 }
 
@@ -227,7 +249,8 @@ function aside() {
  * Create a div Block
  * @return BlockNode object
  */
-function div() {
+function div()
+{
     return block('div');
 }
 
@@ -235,7 +258,8 @@ function div() {
  * Create an Audio Block
  * @return InlineNode object
  */
-function audio() {
+function audio()
+{
     return inline('audio');
 }
 
@@ -243,7 +267,8 @@ function audio() {
  * Create a video Block
  * @return InlineNode object
  */
-function video() {
+function video()
+{
     return inline('video');
 }
 
@@ -255,7 +280,8 @@ function video() {
  * Create a sup Block
  * @return InlineNode object
  */
-function sup() {
+function sup()
+{
     return inline('sup');
 }
 
@@ -263,7 +289,8 @@ function sup() {
  * Create a sub Block
  * @return InlineNode object
  */
-function sub() {
+function sub()
+{
     return inline('sub');
 }
 
@@ -271,7 +298,8 @@ function sub() {
  * Create a bold Block
  * @return InlineNode object
  */
-function b() {
+function b()
+{
     return inline('b');
 }
 
@@ -279,7 +307,8 @@ function b() {
  * Create a strong Block
  * @return InlineNode object
  */
-function strong() {
+function strong()
+{
     return inline('strong');
 }
 
@@ -288,7 +317,8 @@ function strong() {
  * Create a span Block
  * @return InlineNode object
  */
-function span() {
+function span()
+{
     return inline('span');
 }
 
@@ -296,7 +326,8 @@ function span() {
  * Create a bdi Block
  * @return InlineNode object
  */
-function bdi() {
+function bdi()
+{
     return inline('bdi');
 }
 
@@ -304,7 +335,8 @@ function bdi() {
  * Create a bdo Block
  * @return InlineNode object
  */
-function bdo() {
+function bdo()
+{
     return inline('bdo');
 }
 
@@ -312,7 +344,8 @@ function bdo() {
  * Create a blockquote Block
  * @return BlockNode object
  */
-function blockquote() {
+function blockquote()
+{
     return block('blockquote');
 }
 
@@ -320,7 +353,8 @@ function blockquote() {
  * Create a Br Block
  * @return Leaf object
  */
-function br() {
+function br()
+{
     return leaf('br');
 }
 
@@ -328,7 +362,8 @@ function br() {
  * Create a Wbr Block
  * @return Leaf object
  */
-function wbr() {
+function wbr()
+{
     return leaf('wbr');
 }
 
@@ -336,7 +371,8 @@ function wbr() {
  * Create a Hr Block
  * @return Leaf object
  */
-function hr() {
+function hr()
+{
     return leaf('hr');
 }
 
@@ -344,7 +380,8 @@ function hr() {
  * Create a button Block
  * @return InlineNode object
  */
-function button() {
+function button()
+{
     return inline('button');
 }
 
@@ -352,7 +389,8 @@ function button() {
  * Create a Canvas Block
  * @return InlineNode object
  */
-function canvas() {
+function canvas()
+{
     return inline('canvas');
 }
 
@@ -360,7 +398,8 @@ function canvas() {
  * Create a Cite Block
  * @return InlineNode object
  */
-function cite() {
+function cite()
+{
     return inline('cite');
 }
 
@@ -368,7 +407,8 @@ function cite() {
  * Create a Code Block
  * @return InlineNode object
  */
-function code() {
+function code()
+{
     return inline('code');
 }
 
@@ -376,7 +416,8 @@ function code() {
  * Create a Data Element
  * @return Leaf object
  */
-function data(string $value) {
+function data(string $value)
+{
     return leaf('data')
         ->where('value', $value);
 }
@@ -385,7 +426,8 @@ function data(string $value) {
  * Create a Del Block
  * @return InlineNode object
  */
-function del() {
+function del()
+{
     return inline('del');
 }
 
@@ -393,7 +435,8 @@ function del() {
  * Create a Dfn Block
  * @return InlineNode object
  */
-function dfn() {
+function dfn()
+{
     return inline('dfn');
 }
 
@@ -401,7 +444,8 @@ function dfn() {
  * Create a em Block
  * @return InlineNode object
  */
-function em() {
+function em()
+{
     return inline('em');
 }
 
@@ -409,7 +453,8 @@ function em() {
  * Create a img Block
  * @return InlineNode object
  */
-function img() {
+function img()
+{
     return inlineLeaf('img');
 }
 
@@ -417,7 +462,8 @@ function img() {
  * Create a Small Block
  * @return InlineNode object
  */
-function small() {
+function small()
+{
     return inline('small');
 }
 
@@ -427,7 +473,8 @@ function small() {
  * Create a I Block
  * @return InlineNode object
  */
-function i() {
+function i()
+{
     return inline('i');
 }
 
@@ -435,7 +482,8 @@ function i() {
  * Create a Mark Block
  * @return InlineNode object
  */
-function mark() {
+function mark()
+{
     return inline('mark');
 }
 
@@ -443,7 +491,8 @@ function mark() {
  * Create a U Block
  * @return InlineNode object
  */
-function u() {
+function u()
+{
     return inline('u');
 }
 
@@ -451,7 +500,8 @@ function u() {
  * Create a Q Block
  * @return InlineNode object
  */
-function q() {
+function q()
+{
     return inline('q');
 }
 
@@ -460,7 +510,8 @@ function q() {
  * Create a footer Block
  * @return BlockNode object
  */
-function footer() {
+function footer()
+{
     return block('footer');
 }
 
@@ -468,7 +519,8 @@ function footer() {
  * Create a header Block
  * @return BlockNode object
  */
-function header() {
+function header()
+{
     return block('header');
 }
 
@@ -476,7 +528,8 @@ function header() {
  * Create a section Block
  * @return BlockNode object
  */
-function section() {
+function section()
+{
     return block('section');
 }
 
@@ -485,7 +538,8 @@ function section() {
  * Create a nav Block
  * @return BlockNode object
  */
-function nav() {
+function nav()
+{
     return block('nav');
 }
 
@@ -493,7 +547,8 @@ function nav() {
  * Create a h1 Block
  * @return BlockNode object
  */
-function h1() {
+function h1()
+{
     return block('h1');
 }
 
@@ -501,7 +556,8 @@ function h1() {
  * Create a h2 Block
  * @return BlockNode object
  */
-function h2() {
+function h2()
+{
     return block('h2');
 }
 
@@ -510,7 +566,8 @@ function h2() {
  * Create a h3 Block
  * @return BlockNode object
  */
-function h3() {
+function h3()
+{
     return block('h3');
 }
 
@@ -518,7 +575,8 @@ function h3() {
  * Create a h4 Block
  * @return BlockNode object
  */
-function h4() {
+function h4()
+{
     return block('h4');
 }
 
@@ -526,7 +584,8 @@ function h4() {
  * Create a h5 Block
  * @return BlockNode object
  */
-function h5() {
+function h5()
+{
     return block('h5');
 }
 
@@ -534,7 +593,8 @@ function h5() {
  * Create a h6 Block
  * @return BlockNode object
  */
-function h6() {
+function h6()
+{
     return block('h6');
 }
 
@@ -542,7 +602,8 @@ function h6() {
  * Create an Ins Block
  * @return BlockNode object
  */
-function ins() {
+function ins()
+{
     return block('ins');
 }
 
@@ -550,7 +611,8 @@ function ins() {
  * Create an Main Block
  * @return BlockNode object
  */
-function main() {
+function main()
+{
     return block('main');
 }
 
@@ -558,7 +620,8 @@ function main() {
  * Create a P Block
  * @return BlockNode object
  */
-function p() {
+function p()
+{
     return block('p');
 }
 
@@ -566,7 +629,8 @@ function p() {
  * Create a Pre Block
  * @return BlockNode object
  */
-function pre() {
+function pre()
+{
     return block('pre');
 }
 
@@ -575,7 +639,8 @@ function pre() {
  * Create a Ol Block
  * @return Enum object
  */
-function ol() {
+function ol()
+{
     return new Enum('ol');
 }
 
@@ -583,7 +648,8 @@ function ol() {
  * Create a Ul Block
  * @return Enum object
  */
-function ul() {
+function ul()
+{
     return new Enum('ul');
 }
 
@@ -592,7 +658,8 @@ function ul() {
  * Create a li Block
  * @return EnumElt object
  */
-function li() {
+function li()
+{
     return new EnumElt('li');
 }
 
@@ -600,7 +667,8 @@ function li() {
  * Create an Iframe Block
  * @return Inline object
  */
-function iframe() {
+function iframe()
+{
     return inline('iframe');
 }
 
@@ -608,23 +676,26 @@ function iframe() {
  * Create a Form Block
  * @return Block A formlet
  */
- function form() {
-   return block('form');
+ function form()
+ {
+     return block('form');
  }
 
  /**
   * Create a Fieldset Block
   * @return Block A Fieldset
   */
-  function fieldset() {
-    return block('fieldset');
+  function fieldset()
+  {
+      return block('fieldset');
   }
 
  /**
   * Create a Label tag
   * @return Inline object
   */
- function label() {
+ function label()
+ {
      return inline('label');
  }
 
@@ -633,7 +704,8 @@ function iframe() {
   * @todo this tag is not well typed ... :'(
   * @return Inline object
   */
- function legend() {
+ function legend()
+ {
      return inline('legend');
  }
 
@@ -641,7 +713,8 @@ function iframe() {
   * Create an input tag
   * @return Inline object
   */
- function input() {
+ function input()
+ {
      return inlineLeaf('input');
  }
 
@@ -649,7 +722,8 @@ function iframe() {
   * Create an textarea tag
   * @return Inline object
   */
- function textarea() {
+ function textarea()
+ {
      return inline('textarea');
  }
 
@@ -657,7 +731,8 @@ function iframe() {
   * Create a keygen tag
   * @return Inline object
   */
- function keygen() {
+ function keygen()
+ {
      return inlineLeaf('keygen');
  }
 
@@ -665,7 +740,8 @@ function iframe() {
   * Create an output tag
   * @return Inline object
   */
- function output() {
+ function output()
+ {
      return inline('output');
  }
 
@@ -673,7 +749,8 @@ function iframe() {
   * Create a progress tag
   * @return Inline object
   */
- function progress() {
+ function progress()
+ {
      return inline('progress');
  }
 
@@ -681,7 +758,8 @@ function iframe() {
   * Create a meter tag
   * @return Inline object
   */
- function meter() {
+ function meter()
+ {
      return inline('meter');
  }
 
@@ -689,7 +767,8 @@ function iframe() {
   * Create a datalist tag
   * @return Inline object
   */
- function datalist() {
+ function datalist()
+ {
      return new FormOption('datalist');
  }
 
@@ -697,7 +776,8 @@ function iframe() {
   * Create a select tag
   * @return Inline object
   */
- function select() {
+ function select()
+ {
      return new FormOption('select');
  }
 
@@ -705,7 +785,8 @@ function iframe() {
   * Create an Option tag
   * @return Inline object
   */
- function option() {
+ function option()
+ {
      return new Option('option');
  }
 
@@ -713,6 +794,7 @@ function iframe() {
   * Create an OptionGroup tag
   * @return Inline object
   */
- function optgroup() {
+ function optgroup()
+ {
      return new Option('optgroup');
  }

@@ -20,7 +20,7 @@
   SOFTWARE.
 */
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 /**
  * Helper for dom construction
@@ -35,8 +35,9 @@ namespace phun\html {
      * @param string the tag name
      * @return an unsafe tag
      */
-    function unsafe_tag(string $name) {
-      return new D\UnsafeBlock($name);
+    function unsafe_tag(string $name)
+    {
+        return new D\UnsafeBlock($name);
     }
 
     /**
@@ -44,8 +45,9 @@ namespace phun\html {
      * @param string the tag name
      * @return an unsafe leaf
      */
-    function unsafe_leaf(string $name) {
-      return new D\UnsafeLeaf($name);
+    function unsafe_leaf(string $name)
+    {
+        return new D\UnsafeLeaf($name);
     }
 
     /**
@@ -54,8 +56,9 @@ namespace phun\html {
      * @param an array with the childs
      * @return raw
      */
-    function add($raw, $arr) {
-      return $raw->append(...$arr);
+    function add($raw, $arr)
+    {
+        return $raw->append(...$arr);
     }
 
     /**
@@ -63,7 +66,8 @@ namespace phun\html {
      * @param string data; the raw text
      * @return a CDATA node
      */
-    function cdata(string $data) {
+    function cdata(string $data)
+    {
         return new D\CDATA($data);
     }
 
@@ -72,7 +76,8 @@ namespace phun\html {
      * @param string data; the raw text
      * @return a PCDATA node
      */
-    function pcdata(string $data) {
+    function pcdata(string $data)
+    {
         return new D\PCDATA($data);
     }
 
@@ -82,8 +87,9 @@ namespace phun\html {
      * @param $charset the charset of the page ('utf-8' by default)
      * @param $lang the lang of the page (by default 'en')
      */
-    function document(string $title, string $charset = 'utf-8', string $lang = 'en') {
-      return D\html($title, $charset, $lang);
+    function document(string $title, string $charset = 'utf-8', string $lang = 'en')
+    {
+        return D\html($title, $charset, $lang);
     }
 
 
@@ -93,19 +99,26 @@ namespace phun\html {
      * @param $alt String the "alt" of the image
      * @return InlineNode
      */
-    function img(string $src, string $alt = 'An image') : D\InlineLeaf {
+    function img(string $src, string $alt = 'An image') : D\InlineLeaf
+    {
         return D\img()
             ->where('src', $src)
             ->where('alt', $alt);
     }
 
-    function unsafe_pcdata($elt) {
-        if(is_string($elt)) return pcdata($elt);
+    function unsafe_pcdata($elt)
+    {
+        if (is_string($elt)) {
+            return pcdata($elt);
+        }
         return $elt;
     }
 
-    function to_li(D\Node $elt) {
-        if($elt instanceof D\ListElt) return $elt;
+    function to_li(D\Node $elt)
+    {
+        if ($elt instanceof D\ListElt) {
+            return $elt;
+        }
         return D\li()
             ->append($elt);
     }
@@ -114,17 +127,19 @@ namespace phun\html {
      * Create an Ul element
      * @param Node $n list of Node
      */
-     function ul(D\Node...$n) : D\Enum {
-        $nodes = array_map(function($e) { return to_li($e); }, $n);
-        return D\ul()->append(...$nodes);
-    }
+     function ul(D\Node...$n) : D\Enum
+     {
+         $nodes = array_map(function ($e) { return to_li($e); }, $n);
+         return D\ul()->append(...$nodes);
+     }
 
     /**
      * Create an Ol element
      * @param Node $n list of Node
      */
-    function ol(D\Node...$n) : D\Enum {
-        $nodes = array_map(function($e) { return to_li($e); }, $n);
+    function ol(D\Node...$n) : D\Enum
+    {
+        $nodes = array_map(function ($e) { return to_li($e); }, $n);
         return D\ol()->append(...$nodes);
     }
 
@@ -132,7 +147,8 @@ namespace phun\html {
      * Create a Li element
      * @param Block $n list of Block
      */
-    function li(D\Block ... $e) : D\ListElt {
+    function li(D\Block ... $e) : D\ListElt
+    {
         return D\li()->append(...$e);
     }
 
@@ -140,8 +156,9 @@ namespace phun\html {
      * Create a Span element
      * @param List of element to insert into the tag
      */
-    function span(...$n) : D\Inline {
-        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+    function span(...$n) : D\Inline
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
         return D\span()->append(...$nodes);
     }
 
@@ -149,8 +166,9 @@ namespace phun\html {
      * Create a Strong element
      * @param List of element to insert into the tag
      */
-    function strong(...$n) : D\Inline {
-        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+    function strong(...$n) : D\Inline
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
         return D\strong()->append(...$nodes);
     }
 
@@ -158,8 +176,9 @@ namespace phun\html {
      * Create a Small element
      * @param List of element to insert into the tag
      */
-    function small(...$n) : D\Inline {
-        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+    function small(...$n) : D\Inline
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
         return D\small()->append(...$nodes);
     }
 
@@ -167,8 +186,9 @@ namespace phun\html {
      * Create a Sub element
      * @param List of element to insert into the tag
      */
-    function sub(...$n) : D\Inline {
-        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+    function sub(...$n) : D\Inline
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
         return D\sub()->append(...$nodes);
     }
 
@@ -176,8 +196,9 @@ namespace phun\html {
      * Create a Sup element
      * @param List of element to insert into the tag
      */
-    function sup(...$n) : D\Inline {
-        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+    function sup(...$n) : D\Inline
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
         return D\sup()->append(...$nodes);
     }
 
@@ -185,8 +206,9 @@ namespace phun\html {
      * Create an U element
      * @param List of element to insert into the tag
      */
-    function u(...$n) : D\Inline {
-        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+    function u(...$n) : D\Inline
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
         return D\u()->append(...$nodes);
     }
 
@@ -194,8 +216,9 @@ namespace phun\html {
      * Create an I element
      * @param List of element to insert into the tag
      */
-    function i(...$n) : D\Inline {
-        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+    function i(...$n) : D\Inline
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
         return D\i()->append(...$nodes);
     }
 
@@ -203,8 +226,9 @@ namespace phun\html {
      * Create a B element
      * @param List of element to insert into the tag
      */
-    function b(...$n) : D\Inline {
-        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+    function b(...$n) : D\Inline
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
         return D\b()->append(...$nodes);
     }
 
@@ -212,8 +236,9 @@ namespace phun\html {
      * Create an em element
      * @param List of element to insert into the tag
      */
-    function em(...$n) : D\Inline {
-        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+    function em(...$n) : D\Inline
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
         return D\em()->append(...$nodes);
     }
 
@@ -221,8 +246,9 @@ namespace phun\html {
      * Create a Bdo element
      * @param List of element to insert into the tag
      */
-    function bdo(...$n) : D\Inline {
-        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+    function bdo(...$n) : D\Inline
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
         return D\bdo()->append(...$nodes);
     }
 
@@ -230,8 +256,9 @@ namespace phun\html {
      * Create a Bdi element
      * @param List of element to insert into the tag
      */
-    function bdi(...$n) : D\Inline {
-        $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
+    function bdi(...$n) : D\Inline
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
         return D\bdi()->append(...$nodes);
     }
 
@@ -241,7 +268,8 @@ namespace phun\html {
      * @param string alt the message if browser doesn't support iframe
      */
     function iframe(string $src,
-        string $alt = "Your browser does not support iframe") : D\Inline {
+        string $alt = "Your browser does not support iframe") : D\Inline
+    {
         return D\iframe()
             ->where('src', $src)
             ->append(pcdata($alt));
@@ -253,8 +281,9 @@ namespace phun\html {
      * @param $target the navigation context of the base, _self by default
      * @return <base> element
      */
-    function base(string $href, string $target = '_self') {
-      return D\base()
+    function base(string $href, string $target = '_self')
+    {
+        return D\base()
         ->where('href', $href)
         ->where('target', $target);
     }
@@ -266,8 +295,9 @@ namespace phun\html {
      * @param $href the location of the linked document
      * @return <link> element
      */
-    function link(string $rel, string $type, string $href) {
-      return D\link()
+    function link(string $rel, string $type, string $href)
+    {
+        return D\link()
         ->where('rel', $rel)
         ->where('type', $type)
         ->where('href', $href);
@@ -278,8 +308,9 @@ namespace phun\html {
      * @param $href
      * @return <link> element
      */
-    function link_css(string $href) {
-      return link('stylesheet', 'text/css', $href);
+    function link_css(string $href)
+    {
+        return link('stylesheet', 'text/css', $href);
     }
 
     /**
@@ -288,8 +319,9 @@ namespace phun\html {
      * @param $content the content of the meta
      * @return <meta name content>
      */
-    function meta(string $name, string $content) {
-      return D\meta()
+    function meta(string $name, string $content)
+    {
+        return D\meta()
         ->where('name', $name)
         ->where('content', $content);
     }
@@ -299,8 +331,9 @@ namespace phun\html {
      * @param $charset the desired charset
      * @return <meta charset>
      */
-    function charset(string $charset) {
-      return D\meta()
+    function charset(string $charset)
+    {
+        return D\meta()
         ->where('charset', $charset);
     }
 
@@ -310,8 +343,9 @@ namespace phun\html {
      * @param $content
      * @return <meta http-equiv content> element
      */
-    function http_equiv(string $equiv, $content) {
-      return D\meta()
+    function http_equiv(string $equiv, $content)
+    {
+        return D\meta()
         ->where('http-equiv', $equiv)
         ->where('content', (string) $content);
     }
@@ -321,8 +355,9 @@ namespace phun\html {
      * @param $content
      * @return <noscript> element
      */
-    function noscript(string $content = 'JavaScript not allowed') {
-      return D\noscript()->append($content);
+    function noscript(string $content = 'JavaScript not allowed')
+    {
+        return D\noscript()->append($content);
     }
 
     /**
@@ -330,8 +365,9 @@ namespace phun\html {
      * @param $src
      * @return <script> element
      */
-    function script(string $src) {
-      return D\script()->append($src);
+    function script(string $src)
+    {
+        return D\script()->append($src);
     }
 
     /**
@@ -340,8 +376,9 @@ namespace phun\html {
      * @param $type (by default text/javascript)
      * @return <script>
      */
-    function external_script(string $src, string $type = 'text/javascript') {
-      return D\script()
+    function external_script(string $src, string $type = 'text/javascript')
+    {
+        return D\script()
         ->where('src', $src)
         ->where('type', $type);
     }
@@ -352,8 +389,9 @@ namespace phun\html {
      * @param $type (by default text/javascript)
      * @return <script>
      */
-    function async_script(string $src, string $type = 'text/javascript') {
-      return external_script($src, $type)->where('async');
+    function async_script(string $src, string $type = 'text/javascript')
+    {
+        return external_script($src, $type)->where('async');
     }
 
     /**
@@ -362,8 +400,9 @@ namespace phun\html {
      * @param $type (by default text/javascript)
      * @return <script>
      */
-    function defer_script(string $src, string $type = 'text/javascript') {
-      return external_script($src, $type)->where('defer');
+    function defer_script(string $src, string $type = 'text/javascript')
+    {
+        return external_script($src, $type)->where('defer');
     }
 
     /**
@@ -374,16 +413,17 @@ namespace phun\html {
      * @param $scoped
      * @return <style>
      */
-    function style(string $type, string $content, string $media = null, $scoped = false) {
-      $style = D\style();
-      if (is_string($media)) {
-        $style->where('media', $media);
-      }
-      if ($scoped === true) {
-        $style->where('scoped');
-      }
-      $style->append($content);
-      return $style;
+    function style(string $type, string $content, string $media = null, $scoped = false)
+    {
+        $style = D\style();
+        if (is_string($media)) {
+            $style->where('media', $media);
+        }
+        if ($scoped === true) {
+            $style->where('scoped');
+        }
+        $style->append($content);
+        return $style;
     }
 
     /**
@@ -393,8 +433,9 @@ namespace phun\html {
      * @param $scoped
      * @return <style>
      */
-    function style_css(string $content, string $media = null, $scoped = false) {
-      return style('text/css', $content, $media, $scoped);
+    function style_css(string $content, string $media = null, $scoped = false)
+    {
+        return style('text/css', $content, $media, $scoped);
     }
 
     /**
@@ -402,8 +443,9 @@ namespace phun\html {
      * @param $title
      * @return <title> element
      */
-    function title(string $title) {
-      return D\title($title);
+    function title(string $title)
+    {
+        return D\title($title);
     }
 
     /**
@@ -412,9 +454,10 @@ namespace phun\html {
      * @param $content
      * @return <a> element
      */
-    function a(string $href, ...$content) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $content);
-      return D\a()
+    function a(string $href, ...$content)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $content);
+        return D\a()
         ->where('href', $href)
         ->append(...$nodes);
     }
@@ -425,8 +468,9 @@ namespace phun\html {
      * @param string the sense of the abbrev
      * @return <abbr> element
      */
-    function abbr(string $content, string $abbrv) {
-      return D\abbr($content, $abbrv);
+    function abbr(string $content, string $abbrv)
+    {
+        return D\abbr($content, $abbrv);
     }
 
     /**
@@ -437,9 +481,10 @@ namespace phun\html {
      * @param $alt
      * @return <area> element
      */
-    function area(string $shape, string $href, $coords, string $alt = '') {
-      $c = join(',', $coords);
-      return D\area()
+    function area(string $shape, string $href, $coords, string $alt = '')
+    {
+        $c = join(',', $coords);
+        return D\area()
         ->where('shape', $shape)
         ->where('coords', $c)
         ->where('href', $href)
@@ -449,22 +494,25 @@ namespace phun\html {
     /**
      * Create a rect area
      */
-    function rect_area(string $href, $x1, $y1, $x2, $y2, string $alt = '') {
-      return area('rect', $href, [$x1, $y1, $x2, $y2], $alt);
+    function rect_area(string $href, $x1, $y1, $x2, $y2, string $alt = '')
+    {
+        return area('rect', $href, [$x1, $y1, $x2, $y2], $alt);
     }
 
     /**
      * Create a circle area
      */
-    function circle_area(string $href, $x, $y, $radius, string $alt = '') {
-      return area('circle', $href, [$x, $y, $radius], $alt);
+    function circle_area(string $href, $x, $y, $radius, string $alt = '')
+    {
+        return area('circle', $href, [$x, $y, $radius], $alt);
     }
 
     /**
      * Create a Poly Area
      */
-    function poly_area(string $href, $coords, string $alt = '') {
-      return area('poly', $href, $coords, $alt);
+    function poly_area(string $href, $coords, string $alt = '')
+    {
+        return area('poly', $href, $coords, $alt);
     }
 
     /**
@@ -472,8 +520,9 @@ namespace phun\html {
      * @param $content
      * @return <var> element
      */
-    function _var(string $content) {
-      return D\_var($contenr);
+    function _var(string $content)
+    {
+        return D\_var($contenr);
     }
 
     /**
@@ -482,11 +531,12 @@ namespace phun\html {
      * @param $content
      * @return <time> element
      */
-    function time($datetime, string $content) {
-      if(!is_string($datetime)) {
-        $datetime = date('Y-m-d H:i', $datetime);
-      }
-      return D\time($content)->where('datetime', $datetime);
+    function time($datetime, string $content)
+    {
+        if (!is_string($datetime)) {
+            $datetime = date('Y-m-d H:i', $datetime);
+        }
+        return D\time($content)->where('datetime', $datetime);
     }
 
     /**
@@ -494,9 +544,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <adress> element
      */
-    function address(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\address()->append(...$nodes);
+    function address(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\address()->append(...$nodes);
     }
 
     /**
@@ -504,9 +555,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <article> element
      */
-    function article(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\article()->append(...$nodes);
+    function article(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\article()->append(...$nodes);
     }
 
     /**
@@ -514,9 +566,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <aside> element
      */
-    function aside(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\aside()->append(...$nodes);
+    function aside(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\aside()->append(...$nodes);
     }
 
     /**
@@ -524,9 +577,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <div> element
      */
-    function div(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\div()->append(...$nodes);
+    function div(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\div()->append(...$nodes);
     }
 
     /**
@@ -534,9 +588,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <pre> element
      */
-    function pre(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\pre()->append(...$nodes);
+    function pre(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\pre()->append(...$nodes);
     }
 
     /**
@@ -544,9 +599,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <footer> element
      */
-    function footer(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\footer()->append(...$nodes);
+    function footer(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\footer()->append(...$nodes);
     }
 
     /**
@@ -554,9 +610,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <header> element
      */
-    function header(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\header()->append(...$nodes);
+    function header(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\header()->append(...$nodes);
     }
 
     /**
@@ -564,9 +621,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <section> element
      */
-    function section(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\section()->append(...$nodes);
+    function section(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\section()->append(...$nodes);
     }
 
     /**
@@ -574,9 +632,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <nav> element
      */
-    function nav(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\nav()->append(...$nodes);
+    function nav(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\nav()->append(...$nodes);
     }
 
     /**
@@ -584,9 +643,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <main> element
      */
-    function main(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\main()->append(...$nodes);
+    function main(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\main()->append(...$nodes);
     }
 
     /**
@@ -594,9 +654,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <p> element
      */
-    function p(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\p()->append(...$nodes);
+    function p(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\p()->append(...$nodes);
     }
 
     /**
@@ -604,9 +665,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <mark> element
      */
-    function mark(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\mark()->append(...$nodes);
+    function mark(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\mark()->append(...$nodes);
     }
 
     /**
@@ -614,9 +676,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <h1> element
      */
-    function h1(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\h1()->append(...$nodes);
+    function h1(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\h1()->append(...$nodes);
     }
 
     /**
@@ -624,9 +687,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <h2> element
      */
-    function h2(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\h2()->append(...$nodes);
+    function h2(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\h2()->append(...$nodes);
     }
 
     /**
@@ -634,9 +698,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <h3> element
      */
-    function h3(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\h3()->append(...$nodes);
+    function h3(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\h3()->append(...$nodes);
     }
 
     /**
@@ -644,9 +709,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <h4> element
      */
-    function h4(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\h4()->append(...$nodes);
+    function h4(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\h4()->append(...$nodes);
     }
 
     /**
@@ -654,9 +720,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <h5> element
      */
-    function h5(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\h5()->append(...$nodes);
+    function h5(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\h5()->append(...$nodes);
     }
 
     /**
@@ -664,9 +731,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <h6> element
      */
-    function h6(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\h6()->append(...$nodes);
+    function h6(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\h6()->append(...$nodes);
     }
 
     /**
@@ -674,9 +742,10 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <blockquote> element
      */
-    function blockquote(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\blockquote()->append(...$nodes);
+    function blockquote(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\blockquote()->append(...$nodes);
     }
 
     /**
@@ -689,12 +758,13 @@ namespace phun\html {
      */
     function audio(string $src,
       $controls = true,
-      $msg = 'Your user agent does not support the HTML5 Audio element') {
-      $audio = D\audio()->where('src', $src);
-      if ($controls) {
-        $audio->where('controls');
-      }
-      return $audio->append(D\pcdata($msg));
+      $msg = 'Your user agent does not support the HTML5 Audio element')
+    {
+        $audio = D\audio()->where('src', $src);
+        if ($controls) {
+            $audio->where('controls');
+        }
+        return $audio->append(D\pcdata($msg));
     }
 
     /**
@@ -707,12 +777,13 @@ namespace phun\html {
      */
     function video(string $src,
       $controls = true,
-      $msg = 'Your user agent does not support the HTML5 Video element') {
-      $video = D\video()->where('src', $src);
-      if ($controls) {
-        $video->where('controls');
-      }
-      return $video->append(D\pcdata($msg));
+      $msg = 'Your user agent does not support the HTML5 Video element')
+    {
+        $video = D\video()->where('src', $src);
+        if ($controls) {
+            $video->where('controls');
+        }
+        return $video->append(D\pcdata($msg));
     }
 
     /**
@@ -721,32 +792,36 @@ namespace phun\html {
      * @param $content list (...) of body
      * @return <map> element
      */
-    function map(string $name, ...$content) {
-      return D\map()->where('name', $name)->append(...$content);
+    function map(string $name, ...$content)
+    {
+        return D\map()->where('name', $name)->append(...$content);
     }
 
     /**
      * Create <br> element
      * @return <br> element
      */
-    function br() {
-      return D\br();
+    function br()
+    {
+        return D\br();
     }
 
     /**
      * Create <hr> element
      * @return <hr> element
      */
-    function hr() {
-      return D\hr();
+    function hr()
+    {
+        return D\hr();
     }
 
     /**
      * Create <wbr> element
      * @return <wbr> element
      */
-    function wbr() {
-      return D\wbr();
+    function wbr()
+    {
+        return D\wbr();
     }
 
     /**
@@ -754,8 +829,9 @@ namespace phun\html {
      * @param $value
      * @return <button> element
      */
-    function button(string $value) {
-      return D\button()
+    function button(string $value)
+    {
+        return D\button()
         ->where('type', 'button')
         ->append(D\pcdata($value));
     }
@@ -768,8 +844,9 @@ namespace phun\html {
      */
     function canvas(
       string $id, string
-      $message = 'Your browser does not support Canvas') {
-      return D\canvas()->id($id)->append(D\pcdata($message));
+      $message = 'Your browser does not support Canvas')
+    {
+        return D\canvas()->id($id)->append(D\pcdata($message));
     }
 
     /**
@@ -777,9 +854,10 @@ namespace phun\html {
      * @param $nodes
      * @return <cite> element
      */
-    function cite(string $n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\cite()->append(...$nodes);
+    function cite(string $n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\cite()->append(...$nodes);
     }
 
     /**
@@ -787,9 +865,10 @@ namespace phun\html {
      * @param $nodes
      * @return <code> element
      */
-    function code(string $n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\code()->append(...$nodes);
+    function code(string $n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\code()->append(...$nodes);
     }
 
 
@@ -798,8 +877,9 @@ namespace phun\html {
      * @param $value
      * @return <data>
      */
-    function data(string $value) {
-      return D \data($value);
+    function data(string $value)
+    {
+        return D \data($value);
     }
 
     /**
@@ -807,9 +887,10 @@ namespace phun\html {
      * @param $n nodes list
      * @return <del> element
      */
-    function del(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\del()->append(...$nodes);
+    function del(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\del()->append(...$nodes);
     }
 
     /**
@@ -818,11 +899,12 @@ namespace phun\html {
      * @param $n nodes list
      * @return <del> element
      */
-    function del_when($datetime, ...$n) {
-      if(!is_string($datetime)) {
-        $datetime = date('Y-m-d H:i', $datetime);
-      }
-      return del(...$n)->where('datetime', $datetime);
+    function del_when($datetime, ...$n)
+    {
+        if (!is_string($datetime)) {
+            $datetime = date('Y-m-d H:i', $datetime);
+        }
+        return del(...$n)->where('datetime', $datetime);
     }
 
     /**
@@ -830,9 +912,10 @@ namespace phun\html {
      * @param $n nodes list
      * @return <q> element
      */
-    function q(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\q()->append(...$nodes);
+    function q(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\q()->append(...$nodes);
     }
 
     /**
@@ -841,9 +924,10 @@ namespace phun\html {
      * @param $nodes
      * @return <dfn>
      */
-    function dfn(string $title, ...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\dfn()->where('title', $title)->append(...$nodes);
+    function dfn(string $title, ...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\dfn()->where('title', $title)->append(...$nodes);
     }
 
     /**
@@ -852,8 +936,9 @@ namespace phun\html {
      * @param $action
      * @return <form> element
      */
-    function form(string $method, string $action) {
-      return D\form()
+    function form(string $method, string $action)
+    {
+        return D\form()
         ->where('method', $method)
         ->where('action', $action);
     }
@@ -863,9 +948,10 @@ namespace phun\html {
      * @param $nodes
      * @return <fieldset> element
      */
-    function fieldset(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\fieldset()->append(...$nodes);
+    function fieldset(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\fieldset()->append(...$nodes);
     }
 
     /**
@@ -874,8 +960,9 @@ namespace phun\html {
      * @param $nodes
      * @return <label> element
      */
-    function label(string $for, ...$content) {
-      return D\label()->where('for', $for)->append(...$content);
+    function label(string $for, ...$content)
+    {
+        return D\label()->where('for', $for)->append(...$content);
     }
 
     /**
@@ -883,9 +970,10 @@ namespace phun\html {
      * @param $nodes
      * @return <legend> element
      */
-    function legend(...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\legend()->append(...$nodes);
+    function legend(...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\legend()->append(...$nodes);
     }
 
     /**
@@ -895,8 +983,9 @@ namespace phun\html {
      * @param $value
      * @return <input> element
      */
-    function input(string $type, string $name, string $value = '') {
-      return D\input()
+    function input(string $type, string $name, string $value = '')
+    {
+        return D\input()
         ->where('type', $type)
         ->where('name', $name)
         ->where('value', $value);
@@ -908,8 +997,9 @@ namespace phun\html {
      * @param $text
      * @return <textarea> element
      */
-    function textarea(string $name, string $txt) {
-      return D\textarea()->where('name', $name)->append(pcdata($txt));
+    function textarea(string $name, string $txt)
+    {
+        return D\textarea()->where('name', $name)->append(pcdata($txt));
     }
 
     /**
@@ -917,8 +1007,9 @@ namespace phun\html {
      * @param $name
      * @return <keygen> elementa
      */
-    function keygen(string $name) {
-      return D\keygen()->where('name', $name);
+    function keygen(string $name)
+    {
+        return D\keygen()->where('name', $name);
     }
 
     /**
@@ -928,9 +1019,10 @@ namespace phun\html {
      * @param ...$nodes
      * @return <output> element
      */
-    function output(string $name, string $for, ...$n) {
-      $nodes = array_map(function($e) { return unsafe_pcdata($e); }, $n);
-      return D\output()
+    function output(string $name, string $for, ...$n)
+    {
+        $nodes = array_map(function ($e) { return unsafe_pcdata($e); }, $n);
+        return D\output()
         ->where('name', $name)
         ->where('for', $for)
         ->append(...$nodes);
@@ -943,10 +1035,11 @@ namespace phun\html {
      * @param float max
      * @return <progress> element
      */
-    function progress(string $name, float $value, float $max = 100.0) {
-      $value = (string) $value;
-      $max = (string) $max;
-      return D\progress()
+    function progress(string $name, float $value, float $max = 100.0)
+    {
+        $value = (string) $value;
+        $max = (string) $max;
+        return D\progress()
         ->where('name', $name)
         ->where('value', $value)
         ->where('max', $max);
@@ -960,11 +1053,12 @@ namespace phun\html {
      * @param float max
      * @return <progress> element
      */
-    function meter(string $name, float $value, float $min = 0.0, float $max = 100.0) {
-      $value = (string) $value;
-      $min = (string) $min;
-      $max = (string) $max;
-      return D\meter()
+    function meter(string $name, float $value, float $min = 0.0, float $max = 100.0)
+    {
+        $value = (string) $value;
+        $min = (string) $min;
+        $max = (string) $max;
+        return D\meter()
         ->where('name', $name)
         ->where('value', $value)
         ->where('min', $min)
@@ -977,8 +1071,9 @@ namespace phun\html {
      * @param nodes
      * @return <datalist> element
      */
-    function datalist(string $id, ...$nodes) {
-      return D\datalist()->id($id)->append(...$nodes);
+    function datalist(string $id, ...$nodes)
+    {
+        return D\datalist()->id($id)->append(...$nodes);
     }
 
     /**
@@ -987,8 +1082,9 @@ namespace phun\html {
      * @param nodes
      * @return <select> element
      */
-    function select(string $name, ...$nodes) {
-      return D\select()->where('name', $name)->append(...$nodes);
+    function select(string $name, ...$nodes)
+    {
+        return D\select()->where('name', $name)->append(...$nodes);
     }
 
     /**
@@ -997,9 +1093,10 @@ namespace phun\html {
      * @param content
      * @return <option> element
      */
-    function option(string $value, $content) {
-      $nodes = unsafe_pcdata($content);
-      return D\option()->where('value', $value)->append($nodes);
+    function option(string $value, $content)
+    {
+        $nodes = unsafe_pcdata($content);
+        return D\option()->where('value', $value)->append($nodes);
     }
 
     /**
@@ -1008,8 +1105,9 @@ namespace phun\html {
      * @param nodes
      * @return <optgroup> element
      */
-    function optgroup(string $label, ...$nodes) {
-      return D\optgroup()->where('label', $label)->append(...$nodes);
+    function optgroup(string $label, ...$nodes)
+    {
+        return D\optgroup()->where('label', $label)->append(...$nodes);
     }
 
 }
@@ -1027,12 +1125,13 @@ namespace phun\html\util {
    * @param string the name of the select element
    * @param an array ($value=>$text) for the options
    */
-  function select(string $name, $array) {
-    $result = [];
-    foreach($array as $value => $content) {
-      $result[] = H\option($value, $content);
-    }
-    return H\select($name, ...$result);
+  function select(string $name, $array)
+  {
+      $result = [];
+      foreach ($array as $value => $content) {
+          $result[] = H\option($value, $content);
+      }
+      return H\select($name, ...$result);
   }
 
   /**
@@ -1041,14 +1140,15 @@ namespace phun\html\util {
    * @param array the list of completable terms
    * @return a <div> with the input and the datalist
    */
-  function completable_input(string $name, $array) {
-    $id = \phun\util\data_id('completable');
-    $result = array_map(function($e) {
+  function completable_input(string $name, $array)
+  {
+      $id = \phun\util\data_id('completable');
+      $result = array_map(function ($e) {
       return H\option($e, '');
     }, $array);
-    $list = H\datalist($id, ...$result);
-    $input = H\input('text', $name)->where('list', $id);
-    return H\div($input, $list);
+      $list = H\datalist($id, ...$result);
+      $input = H\input('text', $name)->where('list', $id);
+      return H\div($input, $list);
   }
 
 

@@ -20,7 +20,7 @@
   SOFTWARE.
 */
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 
 /**
@@ -29,8 +29,8 @@ declare(strict_types=1);
  */
 namespace phun\javascript;
 
-
-trait Sandbox {
+trait javascript_sandbox
+{
     // Attributes
     protected $referenced_nodes;
     protected $colored;
@@ -38,7 +38,8 @@ trait Sandbox {
     /**
      * Initialize de sandbox
      */
-    protected function init_sandbox() {
+    protected function init_sandbox()
+    {
         $this->referenced_nodes = [];
         $this->colored = false;
     }
@@ -46,22 +47,25 @@ trait Sandbox {
     /**
      * Check if a node is used in JavaScript
      */
-    protected function is_colored() {
+    protected function is_colored()
+    {
         return $this->colored;
     }
 
     /**
      * Get all referenced nodes
      */
-    public function referenced() {
+    public function referenced()
+    {
         return $this->referenced_nodes;
     }
 
     /**
      * Low level binding for referencing node
      */
-    protected function reference(...$nodes) {
-        foreach($nodes as $node) {
+    protected function reference(...$nodes)
+    {
+        foreach ($nodes as $node) {
             if (!is_string($node) && $node->isReferenceable()) {
                 $this->referenced_nodes[$node->getUID()] = $node;
                 $this->reference(...array_values($node->referenced()));
