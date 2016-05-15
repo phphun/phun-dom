@@ -29,7 +29,7 @@ declare (strict_types=1);
  */
 namespace phun\javascript;
 
-trait javascript_sandbox
+trait Sandbox
 {
     // Attributes
     protected $referenced_nodes;
@@ -59,6 +59,14 @@ trait javascript_sandbox
     {
         return $this->referenced_nodes;
     }
+
+    /**
+     * Colorize a node
+     */
+     public function colorize()
+     {
+         $this->colored = true;
+     }
 
     /**
      * Low level binding for referencing node

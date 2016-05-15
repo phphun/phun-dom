@@ -24,10 +24,9 @@ declare (strict_types=1);
 
 namespace phun;
 
-
 // Library inclusion
 require_once 'lib/utils.php';
-require_once 'lib/javascript_sandbox.php';
+require_once 'lib/Sandbox.php';
 require_once 'lib/nodes.php';
 require_once 'lib/dom.php';
 require_once 'lib/helper.php';
@@ -46,7 +45,9 @@ $form = html\select('hello',
   )
 );
 
+
 $page = html\document('Hello World');
+$page->to_client($form);
 $page->body()->append(
   $p,
   html\br(),

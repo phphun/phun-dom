@@ -739,11 +739,22 @@ class Document extends CompositeNode
   }
 
   /**
+   * Get an element on client side
+   * @param Node an Html Node
+   *
+   * @return A JavaScript Element
+   */
+   public function to_client($element)
+   {
+       $element->colorize();
+   }
+
+  /**
    * Magic string coersion.
    *
    * @return a String representation of an HTML Document
    */
-  public function __toString()
+  public function __toString() : string
   {
       $this->body->append($this->createSandbox());
       $this->content = [$this->head, $this->body];
