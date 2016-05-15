@@ -702,6 +702,43 @@ class Document extends CompositeNode
   }
 
   /**
+   * Returns all referenced Html
+   * @return an array with all nodes
+   */
+  public function referenced()
+  {
+      return array_merge($this->head->referenced(), $this->body->referenced());
+  }
+
+  /**
+   * Create the Hash with all referenced nodes
+   */
+  protected function createJSHash()
+  {
+      $content = $this->hash.'={';
+      foreach ($this->referenced() as $elt => $value) {
+          if ($value->is_colored()) {
+              $querySel = '[data-phun-id="'.$elt.'"]';
+              $content .= '"'.$elt.'":document.querySelector(\''.$querySel.'\'),';
+          }
+      }
+      $content .= '};';
+
+      return $content;
+  }
+
+  /**
+   * Create a Script Sandobox
+   */
+  protected function createSandbox()
+  {
+      $script = new MetadataNode('script');
+      $script->append($this->createJSHash());
+
+      return $script;
+  }
+
+  /**
    * Magic string coersion.
    *
    * @return a String representation of an HTML Document
@@ -710,44 +747,8 @@ class Document extends CompositeNode
   {
       $this->body->append($this->createSandbox());
       $this->content = [$this->head, $this->body];
-
       return '<!doctype html>'.(parent::__toString());
   }
-
-  /**
-  *
-  *
-  */
-
-    public function referenced()
-    {
-        return array_merge(
-        $this->head->referenced(),
-        $this->body->referenced()
-      );
-    }
-
-    protected function createJSHash()
-    {
-        $content = $this->hash.'={';
-        foreach ($this->referenced() as $elt => $value) {
-            if ($value->is_colored()) {
-                $querySel = '[data-phun-id="'.$elt.'"]';
-                $content .= '"'.$elt.'":document.querySelector(\''.$querySel.'\'),';
-            }
-        }
-        $content .= '};';
-
-        return $content;
-    }
-
-    protected function createSandbox()
-    {
-        $script = new MetadataNode('script');
-        $script->append($this->createJSHash());
-
-        return $script;
-    }
 }
 
 // TypeFix class
