@@ -702,6 +702,13 @@ class Document extends CompositeNode
   }
 
   /**
+   * get an element to the client
+   */
+  public function client($elt)
+  {
+  }
+
+  /**
    * Returns all referenced Html
    * @return an array with all nodes
    */
