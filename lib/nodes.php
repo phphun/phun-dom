@@ -699,6 +699,16 @@ class Document extends CompositeNode
   }
 
   /**
+   * Append a client Side procedure
+   * @param an unit callback to be executed (returns Js code)
+   * @return $this
+   */
+   public function client($callback)
+   {
+       $this->client[] = $callback;
+   }
+
+  /**
    * Returns the header reference.
    *
    * @return Header header element
@@ -733,14 +743,14 @@ class Document extends CompositeNode
    */
   protected function createJSHash()
   {
-      $content = 'var '. JS\elements .'={';
+      $content = 'var '. JS\elements .'={' . "\n";
       foreach ($this->referenced() as $elt => $value) {
           if ($value->is_colored()) {
               $querySel = '[data-phun-id="'.$elt.'"]';
-              $content .= '"'.$elt.'":document.querySelector(\''.$querySel.'\'),';
+              $content .= "\t".'"'.$elt.'":document.querySelector(\''.$querySel.'\'),'."\n";
           }
       }
-      $content .= '};';
+      $content .= '};'."\n";
 
       return $content;
   }
@@ -751,7 +761,12 @@ class Document extends CompositeNode
   protected function createSandbox()
   {
       $script = new MetadataNode('script');
+      $result = '';
+      foreach ($this->client as $proc) {
+          $result .= $proc->call($this);
+      }
       $script->append($this->createJSHash());
+      $script->append($result);
 
       return $script;
   }

@@ -45,9 +45,10 @@ $form = html\select('hello',
   )
 );
 
+$form->set_props('i', 12);
+
 
 $page = html\document('Hello World');
-$page->to_client($form);
 $page->body()->append(
   $p,
   html\br(),
@@ -73,5 +74,10 @@ $page->body()->append(
     'Firefox', 'Google Chrome', 'Safari', 'Vivaldi'
   ])
 );
+
+$page->client(function () use ($form) {
+  $form = $this->js($form);
+  return 'alert('.$form->get_props('i').')';
+});
 
 echo $page;

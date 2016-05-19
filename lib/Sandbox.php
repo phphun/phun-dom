@@ -115,10 +115,8 @@ trait Props
 
 class Element
 {
-    // Use Props
-  use Props;
 
-  // Props
+    // Props
   protected $props;
   // UID
   protected $uid;
@@ -141,6 +139,9 @@ class Element
     */
     public function __toString() : string
     {
-        return elements . '[' . $this->uid . ']';
+        return elements . '["' . $this->uid . '"]';
     }
+
+    // Use Props
+    use Props;
 }
