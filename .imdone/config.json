@@ -1,0 +1,6 @@
+"meta": {
+  "issue": {
+    "urlTemplate": "https://github.com/phphun/phun-dom/issues/%s",
+    "titleTemplate": "Issue form ATOM #%s"
+  }
+}
