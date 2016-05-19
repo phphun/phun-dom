@@ -134,14 +134,39 @@ class Element
    }
 
    /**
+    * GetUID
+    */
+    public function getUID()
+    {
+        return $this->uid;
+    }
+
+   /**
     * Return a string representation of the element
     * @return string
     */
     public function __toString() : string
     {
-        return elements . '["' . $this->uid . '"]';
+        return elements . '["' . $this->uid . '"][0]';
     }
 
     // Use Props
     use Props;
+
+    /**
+     * Magic overloading for easy attributes access.
+     */
+    public function __get($attribute)
+    {
+        return $this->get_props($attribute);
+        //return elements . '["' . $this->uid . '"][1]["'.$attribute.'"]';
+    }
+
+    /**
+     * Magic overloading for easy attributes modificator.
+     */
+    public function __set($name, $value)
+    {
+        $this->set_propos($name, $value);
+    }
 }

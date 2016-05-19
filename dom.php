@@ -77,7 +77,8 @@ $page->body()->append(
 
 $page->client(function () use ($form) {
   $form = $this->js($form);
-  return 'alert('.$form->get_props('i').')';
+  $this->props($form, 'i', 23);
+  return 'alert('.$form->i.')';
 });
 
 echo $page;

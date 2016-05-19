@@ -747,7 +747,12 @@ class Document extends CompositeNode
       foreach ($this->referenced() as $elt => $value) {
           if ($value->is_colored()) {
               $querySel = '[data-phun-id="'.$elt.'"]';
-              $content .= "\t".'"'.$elt.'":document.querySelector(\''.$querySel.'\'),'."\n";
+              $content .= "\t".'"'.$elt.'":[document.querySelector(\''.$querySel.'\'),';
+              $content .= '{';
+              foreach ($value->get_all_props() as $k => $v) {
+                  $content .= '"'.$k.'":'.$v.',';
+              }
+              $content .= "}]\n";
           }
       }
       $content .= '};'."\n";
@@ -782,6 +787,17 @@ class Document extends CompositeNode
        $element->colorize();
        return new JS\Element($element->getUID(), $element->get_all_props());
    }
+
+  /**
+   * Set props on client side
+   */
+  public function props($element, string $key, $value)
+  {
+      $element->set_props($key, $value);
+      //$this->client(function () {
+      //  return JS\elements .'["'.$element->getUID().'"][1].'.$key.'='.$value.';\n';
+      //});
+  }
 
   /**
    * Magic string coersion.
