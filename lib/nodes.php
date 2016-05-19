@@ -169,17 +169,23 @@ abstract class Node
       return true;
   }
 
-    public function newID()
-    {
-        if ($this->name !== null) {
-            $this->uniq_id = \phun\util\data_id($this->name);
-        }
-    }
+  /**
+   * Generate a new ID (data-phun-id)
+   */
+  public function newID()
+  {
+      if ($this->name !== null) {
+          $this->uniq_id = \phun\util\data_id($this->name);
+      }
+  }
 
-    public function __clone()
-    {
-        $this->newID();
-    }
+  /**
+   * Wrapper for cloning element
+   */
+  public function __clone()
+  {
+      $this->newID();
+  }
 
   /**
    * Add an attribute to the node. Erase old attribute if exists.
