@@ -145,6 +145,8 @@ abstract class Node
 
   // Use JavaScript Sandbox
   use JS\Sandbox;
+  // Use Props Helper
+  use JS\Props;
 
   /**
    * Build a Generic Tag.
@@ -160,23 +162,6 @@ abstract class Node
       $this->props = [];
       $this->init_sandbox();
   }
-
-  /**
-   * Set a props usable in JavaScript
-   */
-  public function set_props(string $key, $value)
-  {
-      $this->props[$key] = $value;
-      return $this;
-  }
-
-  /**
-   * Get props
-   */
-   public function get_props(string $key)
-   {
-       return $this->props[$key];
-   }
 
   /**
    * Check if a node is referenceable.

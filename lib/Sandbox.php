@@ -81,3 +81,23 @@ trait Sandbox
         }
     }
 }
+
+trait Props
+{
+    /**
+   * Set a props usable in JavaScript
+   */
+  public function set_props(string $key, $value)
+  {
+      $this->props[$key] = $value;
+      return $this;
+  }
+
+  /**
+   * Get props
+   */
+   public function get_props(string $key)
+   {
+       return $this->props[$key];
+   }
+}
