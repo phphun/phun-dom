@@ -399,14 +399,18 @@ abstract class CompositeNode extends Node
       return $result;
   }
 
-    public function __clone()
-    {
-        $this->newID();
-        $this->content = array_map(function ($e) {
-      return clone $e;},
-      $this->content
-    );
-    }
+  /**
+   * Process cloning
+   */
+  public function __clone()
+  {
+      $this->newID();
+      $this->content = array_map(
+        function ($e) {
+          return clone $e;
+        }, $this->content
+      );
+  }
 }
 
 // Typed Inline
@@ -692,7 +696,6 @@ class Document extends CompositeNode
       $this->head = (new Header())->prepend($meta)->append($title);
       $this->body = new Body();
       $this->client = [];
-      $this->hash = uniqid('$PHUN_INTERNAL_');
   }
 
   /**
@@ -730,7 +733,7 @@ class Document extends CompositeNode
    */
   protected function createJSHash()
   {
-      $content = $this->hash.'={';
+      $content = 'var '. JS\elements .'={';
       foreach ($this->referenced() as $elt => $value) {
           if ($value->is_colored()) {
               $querySel = '[data-phun-id="'.$elt.'"]';
@@ -759,9 +762,10 @@ class Document extends CompositeNode
    *
    * @return A JavaScript Element
    */
-   public function to_client($element)
+   public function js($element)
    {
        $element->colorize();
+       return new JS\Element($element->getUID(), $element->get_all_props());
    }
 
   /**

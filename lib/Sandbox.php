@@ -29,6 +29,9 @@ declare (strict_types=1);
  */
 namespace phun\javascript;
 
+// Variables where object are stored
+const elements = '$PHUN_INTERNAL_ELEMENTS';
+
 trait Sandbox
 {
     // Attributes
@@ -100,4 +103,44 @@ trait Props
    {
        return $this->props[$key];
    }
+
+   /**
+    * Get All props
+    */
+    public function get_all_props()
+    {
+        return $this->props;
+    }
+}
+
+class Element
+{
+    // Use Props
+  use Props;
+
+  // Props
+  protected $props;
+  // UID
+  protected $uid;
+
+  /**
+   * Construct a CLient's side element
+   * @param props
+   * @param uid
+   * @param colored
+   */
+   public function __construct($uid, $props = [])
+   {
+       $this->uid = $uid;
+       $this->props = $props;
+   }
+
+   /**
+    * Return a string representation of the element
+    * @return string
+    */
+    public function __toString() : string
+    {
+        return elements . '[' . $this->uid . ']';
+    }
 }
