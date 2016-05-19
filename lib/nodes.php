@@ -132,11 +132,16 @@ trait AppendText
  */
 abstract class Node
 {
-    // Parameters
+    // name of the node <name>
   protected $name;
-    protected $uniq_id;
-    protected $attributes;
-    protected $atomic_attributes;
+  // an uniq id for Js wrapping
+  protected $uniq_id;
+  // attributes with values
+  protected $attributes;
+  // attributes without values
+  protected $atomic_attributes;
+  // JavaScript properties
+  protected $props;
 
   // Use JavaScript Sandbox
   use JS\Sandbox;
@@ -152,6 +157,7 @@ abstract class Node
       $this->attributes = [];
       $this->atomic_attributes = [];
       $this->newID();
+      $this->props = [];
       $this->init_sandbox();
   }
 
@@ -701,12 +707,6 @@ class Document extends CompositeNode
       return $this->body;
   }
 
-  /**
-   * get an element to the client
-   */
-  public function client($elt)
-  {
-  }
 
   /**
    * Returns all referenced Html
