@@ -27,6 +27,7 @@ declare (strict_types=1);
 /**
  * Provide HTML's node representation
  * @author Van de Woestyne Xavier <xaviervdw@gmail.com>
+ * @todo JavaScript Sandbox
  */
 namespace phun\dom;
 
